@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "eef71d70-5537-4283-b69a-98cd9697d92b": {
+          "type": "payment_icon",
+          "settings": {
+            "img_url": "",
+            "payment_img": "shopify:\/\/shop_images\/pngwing.png"
+          }
+        },
+        "5f11844f-9eb9-4d1e-bedc-a094e7852877": {
+          "type": "payment_icon",
+          "settings": {
+            "img_url": "",
+            "payment_img": "shopify:\/\/shop_images\/visa.png"
+          }
+        },
+        "e00fb6c6-78e4-4637-b201-671054cc2d62": {
+          "type": "payment_icon",
+          "settings": {
+            "img_url": "",
+            "payment_img": "shopify:\/\/shop_images\/paypal.png"
+          }
+        }
+      },
+      "block_order": [
+        "eef71d70-5537-4283-b69a-98cd9697d92b",
+        "5f11844f-9eb9-4d1e-bedc-a094e7852877",
+        "e00fb6c6-78e4-4637-b201-671054cc2d62"
+      ],
+      "settings": {
+        "cart_bnr_img": "shopify:\/\/shop_images\/cart-banner.jpg",
+        "title": "Your Shopping Cart"
+      }
+    },
+    "950941bb-5cee-4179-a7ee-5ae70ad2f3d4": {
+      "type": "subscribe-newsletter-section",
+      "settings": {
+        "title": "Subscribe To Newsletter",
+        "description": "<p>Enter your email to receive £60 off your first bedding set !<\/p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "950941bb-5cee-4179-a7ee-5ae70ad2f3d4"
+  ]
+}

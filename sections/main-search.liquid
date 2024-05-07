@@ -1,0 +1,79 @@
+{% paginate search.results by 4 %}
+  <div class="container">
+   <div class="motif-collection-gird-wrapper">
+   <div class="holsper-header-right">
+    <ul class="social-list flex align-center main-search-form" role="list">         
+        <li class="seach-btn desk-only">
+          <form class="main-search-form search-form" action="{{ routes.search_url }}">
+            <div class="search-input">
+              <input type="text"
+                class="js-search"
+                placeholder="Search..."
+                name="q"
+                value="{{ search.terms | escape }}"
+                >
+                {% if section.settings.search_type != "all" %}
+                  <input type="hidden" name="type" value="product">
+                {% endif %}
+                             
+                <button class="search_result_close"> X </button>
+                <button class="search-btn" type="submit">
+                  {% render "icons", icon:"search_icon" %}
+                </button>
+            </div>
+            <div class="prediactive_search">
+              
+            </div>
+          </form>
+        </li>          
+    </ul>
+  </div>
+   <div class="fab-collection-colright-inner">   
+    <div class="fab-collection-sliders pdp-collectiondd search-lists">       
+      {% for item in search.results %}
+        {%- case item.object_type -%}
+          {% when "product" %}
+            {% render "card-product",
+              card_product:item,
+              class:"fab-collection-itm "
+            %}
+          {% when "collection" %}
+            <div class="fab-collection-itm product-card ">
+              <div class="product-card-inner">
+                <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              </div>
+            </div>
+          {% when "article" %}
+            <div class="fab-collection-itm product-card ">
+              <div class="product-card-inner">
+                <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              </div>
+            </div>
+          {% when "page" %}
+            <div class="fab-collection-itm product-card ">
+              <div class="product-card-inner">
+              <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
+            </div>
+           </div>
+        {%- endcase -%}        
+      {% endfor %}      
+    </div>
+   </div>
+   {%- if paginate.pages > 1 -%}
+    {% render 'pagination', paginate: paginate %}
+  {%- endif -%}   
+ </div>
+ </div>
+{% endpaginate %}
+{% schema %}
+  {
+    "name": "Main search",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

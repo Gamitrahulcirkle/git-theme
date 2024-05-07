@@ -1,0 +1,11 @@
+<div class="card_collection_item">
+  <div class="card_media">
+    {{ card_collection.featured_image | image_url:width:auto | image_tag }}
+  </div>
+  <div class="card_collection_title">
+     <a href="{{ card_collection.url }}">
+     {{ card_collection.title }}
+     {% render "icons",icon:"black-arrow" %}
+     </a>
+  </div>
+</div>

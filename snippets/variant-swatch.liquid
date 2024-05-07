@@ -1,0 +1,52 @@
+{% if product.available and product.variants.size > 1 %}
+  {% for option in product.options %}
+    {% render 'custom-swatch',swatch:option %}
+  {% endfor %}
+{% endif %}  
+
+
+
+{% comment %}
+<div class="clear"></div>
+{% unless product.has_only_default_variant %}
+  {% for option in product.options_with_values %}
+    {% assign position = option.position | minus: 1 %}
+    <div class="color-box-label position-{{ position }}">
+      <label>{{ option.name }}</label>
+      {% if option.name =="Size" %}
+        <a>Measurements</a>
+      {% endif %}
+    </div>
+    {% if option.name =="Color" or option.name =="color" %}
+      <ul class="color-chekbox js-product-form__input position-{{ position }}">
+        {% for value in option.values %}
+          <li class="swatche" data-option-index="{{ position }}">
+            <input id="c{{ forloop.index0 }}" type="radio"
+              data-cke-saved-name="{{ option.name }}"
+              name="{{ option.name }}"
+              value="{{ value }}"
+              {% if option.selected_value == value %}
+                checked
+              {% endif %}
+              >
+            <label for="c{{ forloop.index0 }}" style="background:{{ value }};"></label>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="box-radio js-product-form__input swatche position-{{ position }}" data-option-index="{{ position }}">
+      {% for value in option.values %}
+        <input type="radio" id="{{ value }}" 
+          data-cke-saved-name="sheet" 
+          name="{{ option.name }}" 
+          value="{{ value }}" 
+          {% if option.selected_value == value %}
+            checked
+          {% endif %}>
+          <label for="{{ value }}">{{ value }}</label>
+      {% endfor %}        
+      </div>
+    {% endif %}  
+  {% endfor %}
+{% endunless %}  
+{% endcomment %}

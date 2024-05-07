@@ -1,0 +1,405 @@
+{
+  "current": {
+    "social_facebook_link": "#",
+    "social_instagram_link": "#",
+    "social_pinterest_link": "#",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "11bd7317-394e-4755-a352-994b2dafc142": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "home",
+              "menu_url": "\/",
+              "enable_submenu": true,
+              "sub_menu_text0": "Motif Collection",
+              "sub_menu_url0": "shopify:\/\/collections\/frontpage",
+              "sub_menu_url_label0": "View All",
+              "sub_menu_img0": "shopify:\/\/shop_images\/menu.png",
+              "sub_menu_text1": "Motif Collection",
+              "sub_menu_url1": "#",
+              "sub_menu_url_label1": "View All",
+              "sub_menu_img1": "shopify:\/\/shop_images\/menu.png",
+              "sub_menu_text2": "Motif Collection",
+              "sub_menu_url2": "#",
+              "sub_menu_url_label2": "View All",
+              "sub_menu_img2": "shopify:\/\/shop_images\/menu.png",
+              "sub_menu_text3": "Motif Collection",
+              "sub_menu_url3": "#",
+              "sub_menu_url_label3": "View All",
+              "sub_menu_img3": "shopify:\/\/shop_images\/menu.png",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "3437861b-ebe0-41f2-91d7-5deb6410745c": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "New",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "76bfe99a-5203-47b2-8220-b34d77135e84": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "BEDDING SETS",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "5e123f34-1c82-4224-b998-41a706b8a82c": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "THREAD COUNT",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "0500dac6-e8c5-4d54-9c4d-8035479c9001": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "FABRIC TYPE",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "d5d71ef7-f9fb-404a-9514-b9c400e2c058": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "PILLOWCASES",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "34d8ef75-fb22-4398-a088-6997f7f4807f": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "BED SHEETS",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "abe3bbc3-c719-46c9-b547-527cd46440f8": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "DUVET COVERS",
+              "menu_url": "",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          },
+          "menu_FzgCgn": {
+            "type": "menu",
+            "settings": {
+              "menu_title": "Bundle products",
+              "menu_url": "shopify:\/\/pages\/bundle-products",
+              "enable_submenu": false,
+              "sub_menu_text0": "",
+              "sub_menu_url0": "",
+              "sub_menu_url_label0": "",
+              "sub_menu_text1": "",
+              "sub_menu_url1": "",
+              "sub_menu_url_label1": "",
+              "sub_menu_text2": "",
+              "sub_menu_url2": "",
+              "sub_menu_url_label2": "",
+              "sub_menu_text3": "",
+              "sub_menu_url3": "",
+              "sub_menu_url_label3": "",
+              "sub_menu_text4": "",
+              "sub_menu_url4": "",
+              "sub_menu_url_label4": "",
+              "sub_menu_text5": "",
+              "sub_menu_url5": "",
+              "sub_menu_url_label5": "",
+              "sub_menu_text6": "",
+              "sub_menu_url6": "",
+              "sub_menu_url_label6": ""
+            }
+          }
+        },
+        "block_order": [
+          "11bd7317-394e-4755-a352-994b2dafc142",
+          "3437861b-ebe0-41f2-91d7-5deb6410745c",
+          "76bfe99a-5203-47b2-8220-b34d77135e84",
+          "5e123f34-1c82-4224-b998-41a706b8a82c",
+          "0500dac6-e8c5-4d54-9c4d-8035479c9001",
+          "d5d71ef7-f9fb-404a-9514-b9c400e2c058",
+          "34d8ef75-fb22-4398-a088-6997f7f4807f",
+          "abe3bbc3-c719-46c9-b547-527cd46440f8",
+          "menu_FzgCgn"
+        ],
+        "settings": {
+          "announce_label": "Winter Sale | £100 Off for Bedding Sets | Code: SAVE100",
+          "announcebar_rgt_url1": "#",
+          "announcebar_rgt_text1": "sale",
+          "announcebar_rgt_url2": "#",
+          "announcebar_rgt_text2": "Reviews",
+          "logo_img": "shopify:\/\/shop_images\/logo.png",
+          "seach_box_visible": true,
+          "search_type": "product",
+          "main_menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "6b0f3297-0684-41ec-bf14-5e2b2dbb62be": {
+            "type": "footer_logo_section",
+            "settings": {
+              "footer_logo": "shopify:\/\/shop_images\/logo.png",
+              "description": "<p>Feel free to contact us at anytime. From styling advice to shipping information, we are  happy to take your DMs and emails.<\/p>",
+              "contact_us": "info@holsper.com"
+            }
+          },
+          "b0a4fa81-5e64-40de-a5cd-c0740d1e5dbc": {
+            "type": "footer_menu",
+            "settings": {
+              "link_title": "About",
+              "footer_menu": "about"
+            }
+          },
+          "488c9c68-ca82-49ed-8fcd-d76ead884bd1": {
+            "type": "footer_menu",
+            "settings": {
+              "link_title": "My Account",
+              "footer_menu": "my-account"
+            }
+          },
+          "2c049424-3831-4b21-bc74-58960a5a2ed1": {
+            "type": "footer_menu",
+            "settings": {
+              "link_title": "Help & Contact",
+              "footer_menu": "help-contact"
+            }
+          },
+          "b24b8fff-5ffc-4d42-b397-84216cc9c92d": {
+            "type": "footer_bottom",
+            "settings": {
+              "text": "<p>© 2022  Holsper.com® All Rights Reserved<\/p>",
+              "img_url0": "",
+              "bottom_img0": "shopify:\/\/shop_images\/pngwing.png",
+              "img_url1": "",
+              "bottom_img1": "shopify:\/\/shop_images\/visa.png",
+              "img_url2": "",
+              "bottom_img2": "shopify:\/\/shop_images\/paypal.png",
+              "img_url3": "",
+              "img_url4": ""
+            }
+          }
+        },
+        "block_order": [
+          "6b0f3297-0684-41ec-bf14-5e2b2dbb62be",
+          "b0a4fa81-5e64-40de-a5cd-c0740d1e5dbc",
+          "488c9c68-ca82-49ed-8fcd-d76ead884bd1",
+          "2c049424-3831-4b21-bc74-58960a5a2ed1",
+          "b24b8fff-5ffc-4d42-b397-84216cc9c92d"
+        ],
+        "settings": {
+        }
+      },
+      "new-build-bundle-product": {
+        "type": "new-build-bundle-product",
+        "settings": {
+          "main_title": "Buld product bundle",
+          "heading": "CHOOSE YOUR PRODUCTS",
+          "sub_heading": "Add 2-3 products to set up your custom bundle",
+          "bundle_title": "BUILD YOUR OWN BUNDLE",
+          "count_bundle": 3,
+          "product_list": [
+            "1-bottle-purfume-bundle",
+            "2-bottle-purfume-bundle",
+            "3-bottle-purfume-bundle",
+            "3-bottle-purfume-bundle-1",
+            "black-luxury-bed-sheet",
+            "blue-luxury-bed-sheet",
+            "build-your-own-bundle",
+            "gold-luxury-bed-sheet",
+            "golden-birds-bed-sheet",
+            "lily-jade-bed-sheet",
+            "purfume-product-bundle",
+            "purple-flowers-bed-sheet"
+          ]
+        }
+      }
+    },
+    "content_for_index": [
+
+    ],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "5946647744298494267": {
+        "type": "shopify:\/\/apps\/wishlist-plus\/blocks\/wishlist-app-embed\/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "855628211100114053": {
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+<section class="contact-section" data-section_name="contact-form">
+  <div class="top-left-svg">
+    {% render "new-icons",icon:"contact-pattern-icon" %}
+  </div>
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>{{ page.title | escape }}</h2>
+      {{ page_description }}
+    </div>
+
+    {% capture cantactFormInfo %}
+      {% for block in section.blocks %}
+        {% case block.type %} 
+          {%- when "contact_info" -%}
+            <div class="contact-box {% if forloop.index == 2 %} active {% endif %}"> 
+              <img src="{{ block.settings.image | img_url:"master" }}" alt="{{ block.settings.image.alt}}">
+               <div class="c-box-title">{{ block.settings.heading }}</div>
+               {{ block.settings.discription }}
+           </div>
+        {% endcase %}
+      {% endfor %}  
+    {% endcapture %}
+
+    {% if cantactFormInfo != blank %}
+      <div class="contact-box-warpper">
+        {{ cantactFormInfo }}
+      </div>
+    {% endif %}
+      
+    {% if section.settings.heading %}
+      <div class="section-title text-center">
+        <h2>{{ section.settings.heading }}</h2>
+        {{ section.settings.discription }}
+      </div>
+    {% endif %}           
+                   
+    {% form 'contact', id: 'ContactForm', class:"contact-form" %}
+      {%- if form.posted_successfully? -%}
+        <p style="text-align: center; padding: 15px; color: green;" >Form submited successfully!</p>
+      {%- else -%}
+        {{ form.errors | default_errors }}
+      {%- endif -%}                  
+        <div class="contact-form-wrapper">
+            <div class="form-group">
+                <input type="text" name="contact[first_name]" id="first-name" placeholder="First Name"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="contact[last_name]" id="last-name" placeholder="Last Name"/>
+            </div>
+            <div class="form-group">
+                <input type="email" name="contact[email]" id="email" placeholder="Enter Email" required/>
+            </div>
+            <div class="form-group">
+                <input type="number" name="contact[number]" id="number" placeholder="+01  |  Enter Phone No." required/>
+            </div>
+            <div class="form-group full-width">
+                <textarea name="contact[body]" id="message" placeholder="Enter Your Comment"></textarea>
+            </div>
+            <div class="form-group full-width text-center">
+                <button class="btn" type="submit">
+                    Submit
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="14" viewBox="0 0 35 14" fill="none">
+                        <path d="M25.0749 14L35 7L25.0805 0L29.12 6.06667H0V7.93333H29.12L25.0749 14Z" fill="#2C2C2C">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>                    
+    {% endform %}
+  </div>
+</section>
+
+
+{% schema %} 
+  {
+  "name": "Contact form",  
+  "settings": [    
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Contact form",
+      "label": "Heading"
+    },
+    {
+      "type":"richtext",
+      "id":"discription",
+      "label":"Discription"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"contact_info",
+      "name":"Contact Info",
+      "settings":[
+        {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading"
+        },
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        {
+          "type":"richtext",
+          "id":"discription",
+          "label":"Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

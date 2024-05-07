@@ -1,0 +1,235 @@
+<style>
+  .justify-between { justify-content: space-evenly; }
+  .bundle_product_lists {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .product-details {
+    flex: 25%;
+    padding: 20px;
+    border: 1px solid #eee;
+    max-width: 25%;
+    margin: 5px;
+  }
+  .bundle-product-step {
+    display: none;
+  }
+  .bundle-product-step.active-bundle-step {
+    display: block;
+  }
+  .manage_btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+  .manage_btn .steps, .manage_btn .final_step { 
+    width: 14%;
+    font-size: 15px;
+  }
+  button.next_step {
+    max-width: calc(100% - 215px);
+    margin-left: 10px;
+    background: var(--theme-color);
+    padding: 12px 30px;
+    color: #fff;
+    width: 100%;
+  }
+  .product-add-to-cart-section{ display:none; }
+</style>
+
+<section class="home-collection-section" data-name="bundle-products">
+  <div class="container">
+    <div class="heading-row flex align-center justify-between">
+      <ul class="cat-tab tabs flex align-center">
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when "bunde_product_tab" -%}
+              <li class="tab-link {% if forloop.first %} active {% endif %}" data-tab="tab-{{ forloop.index }}"><a href="javascript:void(0);">{{ block.settings.cat_title }}</a></li>
+          {%- endcase -%}
+        {% endfor %}
+      </ul>
+    </div>
+    
+    {% for block in section.blocks %}
+      {%- case block.type -%}
+        {%- when "bunde_product_tab" -%}          
+          <div id="tab-{{ forloop.index }}" class="tab-content {% if forloop.first %} active {% endif %}">
+            {% assign lastInx = 0 %}            
+            {% assign parentLoop = forloop.index %}
+            
+            {% if block.settings.product_list_1 != blank and block.settings.product_list_2 != blank and block.settings.product_list_3 != blank %}
+              {% assign loopSize = 3 %}
+            {% elsif block.settings.product_list_1 != blank and block.settings.product_list_2 != blank %}
+              {% assign loopSize = 2 %}
+            {% else %}
+              {% assign loopSize = 1 %}
+            {% endif %} 
+        
+            {% for inx in (1..loopSize) %}              
+              {% assign productListId = "product_list_" | append:inx %}
+              {% assign products = block.settings[productListId] %}
+              
+              {% if products != blank %}  
+                {% assign lastInx = 1 | plus:inx %}                
+                <div class="step_{{ inx }} bundle-product-step {% if inx == 1 %} active-bundle-step {% endif %}">
+                  <div class="bundle_product_lists hover-show"> 
+                
+                    {% for product in products %}                      
+                      <div class="product-details">
+                        <div class="pro-title">
+                          <a href="{{ product.url }}">{{ product.title }}</a>
+                        </div>
+                        <div class="product-img">
+                          {{ product.featured_image | image_url: width:product.featured_image.width |  image_tag }}
+                        </div>
+                      
+                        <div class="product_swatch_detial">                    
+                          {% if product.available and product.variants.size > 1 %}
+                            {% for option in product.options %}                              
+                             {% render 'custom-swatch',swatch:option, product:product, tabinx:parentLoop, stepinx:inx; productid: product.id %}
+                            {% endfor %}
+                          {% endif %}
+                        </div>
+                      
+                        <div class="price flex align-center js-bundle-product-price">
+                          {% if product.compare_at_price and product.compare_at_price > product.price %}
+                            <del>{{ product.compare_at_price | money }}</del>
+                          {% endif %}
+                          <ins>{{ product.price |  money }}</ins>
+                        </div>
+                      
+                        <div class="select_box">
+                          <input type="checkbox" 
+                            class="select_bundle_product" 
+                            name="bundle_product"
+                            data-product_handle="{{ product.handle }}"
+                            id="select_{{ product.selected_or_first_available_variant.id }}_tab{{ parentLoop }}_step{{ inx }}"
+                            value="{{ product.selected_or_first_available_variant.id }}"
+                            {% if product.selected_or_first_available_variant.available == false %}
+                              disabled
+                            {% endif %}
+                          >
+                          <label for="select_{{ product.selected_or_first_available_variant.id }}_tab{{ parentLoop }}_step{{ inx }}">{{ 'bundleProduct.labels.checkbox_label' | t }}</label>
+                      
+                          <!-- Variant swatches -->                      
+                          <div class="product-add-to-cart-section">
+                            {%- form 'product',
+                               product,
+                               id: product.id,
+                               class: 'js-bdl-product-form'
+                            -%}
+                              <select id="product-select_{{ product.selected_or_first_available_variant.id }}" name="id">
+                                {% for variant in product.variants %}
+                                  <option {% if variant==product.selected_or_first_available_variant %}
+                                    selected="selected" {% endif %} value="{{ variant.id }}"
+                                    data-inv_qty="{{variant.inventory_quantity}}"
+                                  >
+                                    {{ variant.title }} - {{ variant.price | money }} -
+                                  </option>
+                                {% endfor %}
+                              </select>
+                            {% endform %}
+                      
+                            <script>
+                              jQuery(function($) {
+                                new Shopify.OptionSelectors("product-select_{{ product.selected_or_first_available_variant.id }}", { product: {{ product | json }} , onVariantSelected: selectCallbackVariant , enableHistoryState: false });
+                              });
+                          </script>                      
+                         </div>
+                        </div>
+                      </div>
+                     {% endfor %}
+                   </div>
+                  
+                  <div class="manage_btn">                
+                    {% if inx > 1 %}
+                      <button class="back_step steps black_{{ inx | minus:1 }}" data-index="{{ inx | minus:1 }}">{{ 'bundleProduct.labels.back' | t }}</button>
+                    {% endif %}
+                    
+                    {% if inx < loopSize %}
+                      <button class="next_step steps next_{{ inx | plus: 1 }}" data-index="{{ inx | plus:1 }}" disabled>{{ 'bundleProduct.labels.next' | t }}</button>
+                    {% else %}
+                      <button class="next_step final_step next_{{ inx | plus: 1 }}" data-index="{{ inx | plus:1 }}" disabled data-money_format="{{ shop.money_format }}">{{ 'bundleProduct.labels.preview' | t }}</button>
+                    {% endif %}                    
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+              <div class="step_{{ lastInx }} bundle-product-step">
+                <div class="final_bundle_products">
+                  <div class="bundle_product_lists js-bundle-product-list hover-show">                   
+                  </div>
+                </div>
+                <div class="manage_btn">
+                  <button class="back_step steps black_{{ lastInx | minus:1 }}" data-index="{{ lastInx | minus:1 }}">{{ 'bundleProduct.labels.back' | t }}</button> 
+                  <a data-cke-saved-href="#" href="javascript:void(0);" class="js-bundle-product-add add-to-cart-btn btn" tabindex="0">{{ 'bundleProduct.labels.button' | t }}</a>
+                </div>                
+              </div>
+            </div>
+          {%- endcase -%}
+      {% endfor %}
+    </div>
+</section>
+<script>
+  var money_format = "{{ shop.money_format }}"; 
+  const selectCallbackVariant = function(variant, selector){   
+    if( variant != null && variant.available ){
+      var bdlvPrice = '';
+      if( variant.compare_at_price != null && variant.compare_at_price >  variant.price ){
+        bdlvPrice +='<del>'+ Shopify.formatMoney(variant.compare_at_price, money_format) + '</del>';
+      }
+      
+      bdlvPrice +='<ins>'+ Shopify.formatMoney(variant.price, money_format)+'</ins>';
+      $("#"+selector.domIdPrefix).closest(".product-details").find(".js-bundle-product-price").html(bdlvPrice)
+      $("#"+selector.domIdPrefix).closest(".select_box").find("input[type='checkbox']").val(variant.id)
+      $("#"+selector.domIdPrefix).closest(".select_box").find("input[type='checkbox']").prop('disabled', false)
+    }else{
+       $("#"+selector.domIdPrefix).closest(".select_box").find("input[type='checkbox']").prop('disabled', true)
+    }  
+  }
+</script>
+{% schema %}
+  {
+    "name": "Bundle products",
+    "settings": [],
+    "blocks":[
+      {
+        "type":"bunde_product_tab",
+        "name":"Bundle product",
+        "limit":3,
+        "settings":[
+          {
+            "type":"paragraph",
+            "content":"Category title and product list setup as tabs format!"
+          },
+          {
+            "type":"text",
+            "id":"cat_title",
+            "label":"Category title"
+          },
+          {
+            "type":"product_list",
+            "id":"product_list_1",
+            "label":"Bundle product list step 1"
+          },
+          {
+            "type":"product_list",
+            "id":"product_list_2",
+            "label":"Bundle product list step 2"
+          },
+          {
+            "type":"product_list",
+            "id":"product_list_3",
+            "label":"Bundle product list step 3"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,84 @@
+<section class="our-best-services-section" data-name="our-best-services-section" style="background: url({{ section.settings.section_bg_img | image_url: width:auto }});">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <div class="section-title text-center">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    <div class="flex our-best-serv-row">
+      {% for block in section.blocks %}
+       {%- case block.type -%}
+         {%- when "our_services" -%}                
+            <div class="our-best-serv-col">
+              <div class="best-serv-col-inner">
+                  <div class="best-serv-border">
+                    {% if block.settings.service_img != blank %}
+                      <div class="best-serv-ic">
+                        {{ block.settings.service_img | image_url: width:auto | image_tag }}
+                      </div>
+                    {% endif %}
+                      <div class="best-serv-content">
+                          {% if block.settings.service_title %}
+                            <h4>{{ block.settings.service_title }}</h4>
+                          {% endif %}
+                          {{ block.settings.service_description }}
+                      </div>
+                  </div>
+              </div>
+          </div>                
+       {%- endcase -%}
+     {% endfor %}      
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Our services",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"image_picker",
+        "id":"section_bg_img",
+        "label":"Section background image"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"our_services",
+        "name":"Our services",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"service_img",
+            "label":"Service image"
+          },
+          {
+            "type":"text",
+            "id":"service_title",
+            "label":"Service title"
+          },
+          {
+            "type":"richtext",
+            "id":"service_description",
+            "label":"Service description"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Our services"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

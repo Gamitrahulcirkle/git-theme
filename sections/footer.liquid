@@ -1,0 +1,224 @@
+<footer class="holsper-footer footer-style-one">
+  <div class="container">
+    <div class="footer-top">
+      <div class="flex footer-row">
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when "footer_logo_section" -%}
+              <div class="footer-col footer-logo-col">
+                <div class="footer-widget">
+                  {% if block.settings.footer_logo != blank %}
+                    <a href="{{ routes.root_url }}" class="footer-logo">
+                      {% if block.settings.footer_logo != blank %}
+                        {{ block.settings.footer_logo | image_url: width: auto | image_tag }}  
+                      {% else %}
+                        <h2>{{ shop.name }}</h2>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  <div class="address">
+                    {{ block.settings.description }}
+                    {% if block.settings.contact_us != blank %}
+                      <a href="mailto:{{ block.settings.contact_us }}" class="contact-link-footer">
+                        <strong>{{ 'layout.footer.contact_title' | t }}</strong>: {{ block.settings.contact_us }}
+                      </a>
+                    {% endif %}
+                  </div>
+
+                  {% capture socialMedia %}
+                    {% if settings.social_facebook_link != blank %}
+                      <li>
+                        <a href="{{ settings.social_facebook_link }}">
+                          {% render "icons", icon:"facebook" %}                          
+                        </a>
+                      </li>
+                    {% endif %}  
+                    {% if settings.social_instagram_link != blank %}
+                      <li>
+                        <a href="{{ settings.social_instagram_link }}">
+                          {% render "icons", icon:"instagram" %}                          
+                        </a>
+                      </li>
+                    {% endif %}
+                    {% if settings.social_pinterest_link != blank %}
+                      <li>
+                        <a href="{{ settings.social_pinterest_link }}">
+                          {% render "icons", icon:"pintrest" %}                          
+                        </a>
+                      </li>
+                    {% endif %}
+                  {% endcapture %}
+            
+                  {% if socialMedia != blank %}
+                    <ul class="footer-socials flex align-center">
+                      {{ socialMedia }}
+                    </ul>
+                  {% endif %}
+            
+                </div>
+            </div>                  
+            {%- when 'footer_menu' -%}            
+                 <div class="footer-col footer-link footer-link-1">
+                  <div class="footer-widget">
+                      {% if block.settings.link_title !=blank %}
+                        <h4 class="footer-tile">{{ block.settings.link_title }}</h4>
+                      {% endif %}
+                      <ul>
+                        {% for link in block.settings.footer_menu.links  %}                                
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}                                
+                      </ul>
+                  </div>
+              </div>
+              {%- endcase -%}  
+            {% endfor %}                  
+          </div>
+      </div>
+      <div class="flex footer-bottom justify-between align-center">
+         {% for block in section.blocks %}
+           {% case block.type %}
+             {% when "footer_bottom" %}
+               <div class="footer-bottom-left">
+                  {{ block.settings.text }}
+              </div>
+              <div class="footer-bottom-right">
+                  <ul class="footer-payment flex align-center justify-end">
+                    {% for j in (0..4) %}
+                      {% assign bottom_img ="bottom_img" | append:j %}
+                      {% assign img_url ="img_url" | append:j %}
+
+                      {% if block.settings[bottom_img] != blank %}
+                        <li>
+                          <a href="{{ block.settings[img_url] | default:"#" }}">
+                             {{ block.settings[bottom_img] | image_url: width: auto | image_tag }}                             
+                          </a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}                            
+                  </ul>
+              </div>
+           {% endcase %}  
+         {% endfor %}     
+          
+      </div>
+    </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [],
+    "blocks":[
+      {
+        "name":"Footer logo section",
+        "type":"footer_logo_section",
+        "limit":1,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"footer_logo",
+            "label":"logo"
+          },
+          {
+            "type":"richtext",
+            "id":"description",
+            "label":"Description"
+          },
+          {
+            "type":"text",
+            "id":"contact_us",
+            "label":"Contact Us"
+          }
+        ]
+      },
+      {
+        "name" :"Footer menu",
+        "type":"footer_menu",
+        "settings":[
+          {
+            "type":"text",
+            "id":"link_title",
+            "label":"Link label"
+          },
+          {
+            "type":"link_list",
+            "id":"footer_menu",
+            "label":"Menu"
+          }          
+        ]
+      },
+      {
+        "type":"footer_bottom",
+        "name":"Footer bottom",
+        "settings":[
+          {
+            "type":"richtext",
+            "id":"text",
+            "label":"Text"
+          },
+          {
+            "type":"url",
+            "id":"img_url0",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"bottom_img0",
+            "label":"Image"
+          },
+          {
+            "type":"url",
+            "id":"img_url1",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"bottom_img1",
+            "label":"Image 1"
+          },
+          {
+            "type":"url",
+            "id":"img_url2",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"bottom_img2",
+            "label":"Image 2"
+          },
+          {
+            "type":"url",
+            "id":"img_url3",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"bottom_img3",
+            "label":"Image 3"
+          },
+          {
+            "type":"url",
+            "id":"img_url4",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"bottom_img4",
+            "label":"Image 4"
+          }
+        ]
+      }    
+    ],
+    "presets":[
+      {
+        "name":"footer"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

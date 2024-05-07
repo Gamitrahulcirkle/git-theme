@@ -1,0 +1,142 @@
+<section class="our-favorites-section" data-name="our-favorites-section">
+  <div class="offset-left">
+    <div class="section-title text-center mobile-only">
+      {% if section.settings.main_title != blank %}
+        <h2>{{ section.settings.main_title }}</h2>
+      {% endif %}
+    </div>
+    <div class="our-fav-row flex">
+        <div class="our-fav-left">
+            <div class="our-fav-left-inner">
+                <div class="section-title desk-only">
+                  {% if section.settings.main_title != blank %}
+                    <h2>{{ section.settings.main_title }}</h2>
+                  {% endif %}
+                </div>
+                <div class="our-fav-nav">
+                  {% for block in section.blocks %}
+                    {%- case block.type -%}
+                      {%- when "image_with_content" -%}
+                        <div class="our-fav-nav-itm">                              
+                          <h5> {% render "icons",icon:"right_black_arrow" %} 0{{ forloop.index }}. <span>  {{ block.settings.button_label }}</span></h5>
+                        </div>
+                      {%- endcase -%}
+                    {% endfor %}                       
+                </div>
+            </div>
+        </div>                                  
+        <div class="our-fav-right">
+            <div class="our-fav-right-inner">
+                <div class="our-fav-main-slider">
+                  {% for block in section.blocks %}
+                    {%- case block.type -%}
+                      {%- when "image_with_content" -%}
+                        <div class="our-fav-main-itm">
+                          <div class="our-fav-main-itm-inner">
+                            {% if block.settings.image != blank %}
+                              <a class="our-fav-main-itm-img">
+                                {{ block.settings.image | image_url:width:auto | image_tag }}                                  
+                              </a>
+                            {% endif %}  
+                              <div class="our-fav-main-content">
+                                  {% if block.settings.button_label != blank %}
+                                    <h4>
+                                      <a href="{{ block.settings.button_url }}">
+                                          {{ block.settings.button_label }}
+                                          {% render "icons",icon:"right_black_arrow" %}
+                                      </a>
+                                  </h4>
+                                  {% endif %}
+                                  {{ block.settings.description }}
+                              </div>
+                          </div>
+                      </div>
+                    {%- when "last_slide" -%}
+                      <div class="our-fav-main-itm">
+                          <div class="our-fav-main-itm-inner">
+                              <div class="go-to-all">
+                                {% if block.settings.slide_text != blank %}
+                                  <a href="{{ block.settings.last_slide_url }}">
+                                      {% render "icons",icon:"right_black_arrow" %}                                          
+                                        <h4>{{ block.settings.slide_text }}</h4>
+                                  </a>
+                                {% endif %}  
+                              </div>
+                          </div>
+                      </div>
+                    {%- endcase -%}  
+                  {% endfor %}                        
+                </div>
+            </div>
+        </div>
+     </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Our favorites section",
+    "settings": [
+      {
+        "type":"text",
+        "id":"main_title",
+        "label":"Main tile"
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Image with content",
+        "type":"image_with_content",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"url",
+            "id":"button_url",
+            "label":"Button URL"
+          },
+          {
+            "type":"text",
+            "id":"button_label",
+            "label":"Button label"
+          },
+          {
+            "type":"richtext",
+            "id":"description",
+            "label":"Description"
+          }
+        ]
+      },
+      {
+        "name":"last slide",
+        "type":"last_slide",
+        "limit":1,
+        "settings":[
+          {
+            "type":"text",
+            "id":"slide_text",
+            "label":"last slide"
+          },
+          {
+            "type":"url",
+            "id":"last_slide_url",
+            "label":"Last slider URL"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Our favorites section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

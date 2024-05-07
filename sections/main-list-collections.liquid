@@ -1,0 +1,32 @@
+ <section class="collection-lists">
+  <div class="collection-list-heading">
+    <h2>{{ section.settings.title }}</h2>
+  </div>   
+   <ul class="collection-list">
+    {%- for collection in collections -%}
+      <li class="collection-list__item grid__item" >
+        {% render "card-collection",
+          card_collection:collection
+        %}      
+      </li>
+    {%- endfor -%}
+  </ul>
+ </section>   
+{% schema %}
+  {
+    "name": "Collection list page",
+    "settings": [
+      {
+        "type":"inline_richtext",
+        "id":"title",
+        "label":"Heading"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

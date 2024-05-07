@@ -1,0 +1,119 @@
+<section class="home-banner-section" data-section="home-banner-section">
+    <div class="container-full">
+        <div class="flex banner-row">          
+            <div class="banner-col-left">
+                <div class="banner-col-inner">
+                  {% if section.settings.banner_img != blank %}
+                    <div class="banner-media">
+                       {{ section.settings.banner_img | image_url: width: auto | image_tag }}                         
+                    </div>
+                  {% endif %}
+                    <div class="banner-caption">
+                        <div class="banner-caption-frame">
+                           {% if section.settings.banner_title != blank %} 
+                             <h2>{{ section.settings.banner_title }}</h2>
+                           {% endif %}
+                            <p>{{ section.settings.banner_sub_title }}</p>
+                            <a href="{{ section.settings.button_url | default:'#' }}" class="btn">
+                                {{ section.settings.button_text }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-col-right">
+                <div class="banner-col-inner">
+                  {% for block in section.blocks %}
+                    {%- case block.type -%}
+                      {%- when "banner_img" -%}
+                        <div class="banner-media">
+                          {% if block.settings.banner_img != blank %}
+                            {{ block.settings.banner_img | image_url: width:auto | image_tag }}                            
+                          {% endif %}
+                      
+                          {% if block.settings.button_label != blank %}
+                            <a href="{{ block.settings.button_url | default: '#'}}" class="banner-btn">
+                                {{ block.settings.button_label }}
+                                {% render "icons", icon:"right_white_arrow" %}
+                            </a>
+                          {% endif %}  
+                      </div>
+                    {%- endcase -%}  
+                  {% endfor %}                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Banner section",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Banner section"
+      },
+      {
+        "type":"image_picker",
+        "id":"banner_img",
+        "label":"Main banner image"
+      },
+      {
+        "type":"text",
+        "id":"banner_title",
+        "label":"Banner title"
+      },
+      {
+        "type":"text",
+        "id":"banner_sub_title",
+        "label":"Banner sub title"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button URL"
+      },
+      {
+        "type":"text",
+        "id":"button_text",
+        "label":"Button Label"
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Banner image",
+        "type":"banner_img",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"banner_img",
+            "label":"Banner image"
+          },
+          {
+            "type":"url",
+            "id":"button_url",
+            "label":"Button URL"
+          },
+          {
+            "type":"text",
+            "id":"button_label",
+            "label":"Button label"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Home banner section"
+      }
+    ]
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

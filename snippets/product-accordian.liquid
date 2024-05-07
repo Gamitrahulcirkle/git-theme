@@ -1,0 +1,16 @@
+{% if block.settings.heading != blank %} 
+  <div class="pdp-accrodian">
+    <div class="set">
+      <a data-cke-saved-href="javascript:void(0);" href="javascript:void(0);" class="{% if inx == 1 %}active {% endif %}">
+        <span>{{ block.settings.heading }}</span>
+      </a>
+      <div class="content {% if inx == 1 %}active {% endif %}">
+        {% if block.settings.show_description %}
+          {{ product.description }}
+        {% else %}
+          {{ block.settings.content }}
+        {% endif %}  
+      </div>
+    </div>
+  </div>
+{% endif %} 

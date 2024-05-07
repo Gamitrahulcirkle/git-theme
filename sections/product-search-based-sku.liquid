@@ -1,0 +1,19 @@
+<div class="product_content">
+{% assign product = predictive_search.resources.products[0] %}
+  {% if product.available %}
+    {% unless product.has_only_default_variant %}
+      <a href="{{ product.url }}">{{ product.title }} - {{ product.selected_or_first_available_variant.title }}</a>
+    {% else %}
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    {% endunless %}
+  {% else %} 
+    {{ "Product not found!" }}
+  {% endif %} 
+</div>
+
+{% schema %}
+  {
+    "name": "product search on sku",
+    "settings": []
+  }
+{% endschema %}

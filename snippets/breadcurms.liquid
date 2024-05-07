@@ -1,0 +1,21 @@
+<div class="breadcurms">
+  <div class="container">
+    <div class="breadcurms-wrapper">
+      <ul>
+        <li>
+          <a href="{{ routes.root_url }}">  Home </a>
+        </li>        
+        <li>
+          <a href="/collections/{{ product.collections[0].handle }}">
+              {{ product.collections[0].title | capitalize }}
+          </a>
+        </li>        
+        <li>
+          <a class="active">
+              {{ product.title }}
+          </a>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>

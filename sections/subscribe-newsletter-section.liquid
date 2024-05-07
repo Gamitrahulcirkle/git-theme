@@ -1,0 +1,159 @@
+<section class="subscribe-newsletter-section" data-name="subscribe-newsletter-section">
+  <div class="container">    
+    <div class="flex newsletter-row align-center">
+      {% if section.settings.title != blank %}
+        <div class="newsletter-left-col">
+          <h4>{{ section.settings.title }}</h4>
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.form_type == "klaviyo_form" %}
+         <!-- Klaviyo form div -->
+        {% if section.settings.klaviyo_form_id != blank %}
+          <div class="newsletter-right-col"> 
+            <div class="klaviyo-form-{{ section.settings.klaviyo_form_id }}"></div> 
+          </div>
+        {% endif %}  
+        <!--- Mailchimp form -->
+      {% elsif section.settings.form_type == "mail_chimp_form" %}
+        <div class="newsletter-right-col">
+          <div id="mc_embed_shell">
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+              /* #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 600px;} */
+                    /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+                       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            
+            <div id="mc_embed_signup" class="newsletter-right-cold">        
+              <form action="https://gmail.us14.list-manage.com/subscribe/post?u=7c2666ad690a82911dca2be92&amp;id=f69b3e8cb3&amp;f_id=003a9de0f0" 
+                method="post" 
+                id="mc-embedded-subscribe-form" 
+                name="mc-embedded-subscribe-form" 
+                class="validate newsletter-form" 
+                target="_blank"
+                >
+                <div id="mc_embed_signup_scroll" class="form-group">
+                  <!-- <div class="indicates-required">
+                    <span class="asterisk">*</span> indicates required
+                  </div> -->
+                  <div class="mc-field-group" >
+                    <div class="form-group">
+                      <!-- <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>         -->
+                      <input type="email" name="EMAIL" class="form-control required email" placeholder="Enter Your Email Address..." id="mce-EMAIL" required="" value="">
+                      <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button submit-btn" value="Subscribe">
+                        Subscribe
+                        {% render "icons",icon:"form_arrow" %}
+                      </button>
+                    </div>
+                    <!-- <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span> -->
+                  </div>
+                  <div id="mce-responses" class="clear foot">
+                    <div class="response" id="mce-error-response" style="display: none;"></div>
+                    <div class="response" id="mce-success-response" style="display: none;"></div>
+                  </div>
+                  <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                    /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                    <input type="text" name="b_7c2666ad690a82911dca2be92_f69b3e8cb3" tabindex="-1" value="">
+                  </div>
+                  
+                  <!-- <div class="optionalParent">
+                    <div class="clear foot">
+                      <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button submit-btn" value="Subscribe">
+                      
+                       <p style="margin: 0px auto;">
+                        <a href="http://eepurl.com/iHdGt6" title="Mailchimp - email marketing made easy and fun">
+                          <span style="display: inline-block; background-color: transparent; border-radius: 4px;">
+                            <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;">
+                          </span>
+                        </a>
+                      </p>          
+                    </div>
+                  </div> -->
+                  
+                </div>
+              </form>
+            </div>
+            <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+          </div>
+        </div
+      {% else %}
+        <div class="newsletter-right-col">
+          {% form 'contact',  class:'newsletter-form' %}
+            {%- if form.posted_successfully? -%}
+              <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                {{ 'Subscribe sucessfully!' }}
+              </p>
+            {%- endif -%}
+             <div class="form-group">
+               <input class="form-control" name="contact[email]" type="email" placeholder="Enter Your Email Address..." required>
+               <button class="submit-btn" type="submit">
+                 Subscribe
+                {% render "icons",icon:"form_arrow" %}
+               </button>
+             </div>
+          {% endform %}            
+        </div>
+      {% endif %}       
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Subscribe newsletter form",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"richtext",
+        "id":"description",
+        "label":"Description"
+      },
+      {
+        "type":"header",
+        "content":"Select form type"
+      },
+      {
+        "type":"text",
+        "id":"klaviyo_form_id",
+        "label":"Please insert klaviyo form id",
+        "default":"VmSeNz"
+      },
+      {
+        "type": "select",
+        "id": "form_type",
+        "label": "Select form type",
+        "options": [
+          {
+            "value": "default_form",
+            "label": "Default form"
+          },
+          {
+            "value": "klaviyo_form",
+            "label": "Klaviyo form"
+          },
+          {
+            "value": "mail_chimp_form",
+            "label": "MailChimp form"
+          }
+        ],
+        "default": "default_form"
+      }
+    ],
+    "presets":[
+      {
+        "name":"Subscribe newsletter form"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

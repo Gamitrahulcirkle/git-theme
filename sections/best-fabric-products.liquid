@@ -1,0 +1,92 @@
+<section class="our-best-fabric-collection" data-name="best-fabric-products">
+    <div class="fab-collection-container">
+        <div class="flex fab-collection-row align-end">
+          {% if section.settings.image != blank %}
+            <div class="fab-collection-colleft">
+                <div class="fab-collection-colleft-media">
+                    {{ section.settings.image | image_url:width:section.settings.image.width | image_tag }}
+                </div>
+            </div>
+           {% endif %} 
+            <div class="fab-collection-colright">
+                <div class="fab-collection-colright-inner">
+                  {% if section.settings.main_title != blank %}
+                    <div class="section-title">
+                        <h2 class="h1">{{ section.settings.main_title }}</h2>
+                        <div class="subtitle1">{{ section.settings.sub_title }}</div>
+                    </div>
+                  {% endif %}
+                  <div class="fab-collection-slider pdp-collection">                    
+                    {% for fab_product in section.settings.collection.products %}                      
+                      {% render "card-product", card_product:fab_product, class:"fab-collection-itm " %}
+                    {% endfor %}
+                    <div class="fab-collection-itm">
+                      <div class="fab-collection-itm-inner">
+                        <div class="go-to-all">
+                        {% if section.settings.slide_text != blank %}
+                          <a href="{{ section.settings.last_slide_url }}">
+                            {% render "icons",icon:"fabric-icon" %}
+                            <h4>{{ section.settings.slide_text }}</h4>
+                          </a>
+                        {% endif %}
+                        </div>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Best fabric products",
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Image for right side"
+      },
+      {
+        "type":"text",
+        "id":"main_title",
+        "label":"Main title"
+      },
+      {
+        "type":"inline_richtext",
+        "id":"sub_title",
+        "label":"Sub title"
+      },
+      {
+        "type":"collection",
+        "id":"collection",
+        "label":"Best fabric collection products"
+      },
+      {
+        "type":"header",
+        "content":"Last slide setting"
+      },
+      {
+        "type":"text",
+        "id":"slide_text",
+        "label":"last slide"
+      },
+      {
+        "type":"url",
+        "id":"last_slide_url",
+        "label":"Last slider URL"
+      }
+    ],
+    "presets":[
+      {
+        "name":"Best fabric products"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

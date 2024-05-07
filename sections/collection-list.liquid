@@ -1,0 +1,78 @@
+<div class="collection-lists" data-section_name="collection-list">
+  {% if section.settings.collection_list != blank %}
+    {% for collection in section.settings.collection_list %}
+      <h2>{{ collection.title }}</h2>
+      {% for product in collection.products %}
+        {% render "card-product",card_product:product %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+</div>
+{% comment %}
+{% if section.settings.article != blank %}
+  {% assign article = articles[section.settings.article] %}
+  {{ article.title }}
+  {{ article.image | image_url:width:article.image.width | image_tag }}
+{% endif %}
+{% endcomment %}
+
+{% if section.settings.blog != blank %}
+  <div class="blog-section">
+  {% assign blog = section.settings.blog %}
+    <h2>{{ blog.title }}</h2>
+  {% for post in blog.articles %}
+    <div class="block_of_post">
+      {{ post.title }}
+      {{ post.image | image_url:width:post.image.width | image_tag }}
+    </div>
+  {% endfor %}
+  </div>  
+{% endif %}
+
+{{ section.settings.alignment }}
+{% schema %}
+  {
+    "name": "Collection list",
+    "settings": [
+      {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Collections",
+        "limit": 8
+      },
+      {
+        "type": "article",
+        "id": "article",
+        "label": "Article"
+      },
+      {
+        "type": "blog",
+        "id": "blog",
+        "label": "Blog"
+      },
+      {
+        "type": "radio",
+        "id": "logo_aligment",
+        "label": "Logo alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "centered",
+            "label": "Centered"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "text_alignment",
+        "id": "alignment",
+        "label": "Text alignment",
+        "default": "center"
+      }
+    ],
+    "presets": [{"name": "Collection list"}]
+  }
+{% endschema %}

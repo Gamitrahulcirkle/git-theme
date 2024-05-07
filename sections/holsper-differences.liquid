@@ -1,0 +1,89 @@
+<section class="holsper-differences" data-name="holsper-differences">
+  <div class="top-left-svg">
+    {% render "icons", icon:"dots_icon" %}
+  </div>
+    <div class="container">
+        <div class="section-title text-center">
+          {% if section.settings.main_title != blank %}
+            <h2>{{ section.settings.main_title }}</h2>
+          {% endif %}
+            {{ section.settings.sub_title }}
+        </div>
+        <div class="holsper-difference-row-wrapper">
+            <div class="flex holsper-difference-row">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when "icon_with_text" %}
+                    <div class="holsper-difference-col">
+                      <div class="holsper-difference-col-inner">
+                          <div class="holsper-icon">
+                           {{ block.settings.icon | image_url: width: auto | image_tag }}                            
+                          </div>
+                          <div class="holsper-text-col">
+                              <div class="holsper-text-col-inner">
+                                  {% if block.settings.title != blank %}
+                                    <h5>{{ block.settings.title }}</h5>
+                                   {% endif %}
+                                  {{ block.settings.description }}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                {% endcase %}                
+              {% endfor %}              
+            </div>           
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Holsper differences",
+    "settings": [
+      {
+        "type":"text",
+        "id":"main_title",
+        "label":"Title"
+      },
+      {
+        "type":"richtext",
+        "id":"sub_title",
+        "label":"Text"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"icon_with_text",
+        "name":"Icon with text",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"icon",
+            "label":"Icon"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Heading"
+          },
+          {
+            "type":"richtext",
+            "id":"description",
+            "label":"Description"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Holsper differences"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

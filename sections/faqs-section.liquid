@@ -1,0 +1,126 @@
+<section class="faq-section" data-name="faqs-section">
+  {% if section.settings.enable_icons != blank %}
+    <div class="top-left-svg">
+      {% render "icons-lists", icon:"faq_page_icon" %}
+    </div>
+  {% endif %}
+  
+  <div class="container">
+    {% if section.settings.enable_content %}
+      <div class="section-title text-center">
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %} 
+        {{ section.settings.content }}        
+      </div>
+    {% endif %}
+    
+    {% capture faqContent %} 
+      {% for block in section.blocks %}
+        {% case block.type %} 
+          {% when "faqs" %}
+            {% if block.settings.faq_title != blank and block.settings.faq_content != blank %}
+              <div class="set">
+                <a data-cke-saved-href="javascript:void(0);" href="javascript:void(0);" class="{% if forloop.first %}active {% endif %}">
+                  {% if forloop.index < 10 %} 
+                    {% assign inx_count = forloop.index | prepend:0  %}
+                  {% else %} 
+                    {% assign inx_count = forloop.index  %}
+                  {% endif %}
+                  <span>{{ inx_count }}. {{ block.settings.faq_title }}</span>
+                </a>
+                <div class="content {% if forloop.first %} active {% endif %}">
+                  {{ block.settings.faq_content }}
+                </div>
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %} 
+    {% endcapture %}
+
+    {% if faqContent != blank %}
+      <div class="faq-wrapper">
+        {% if section.settings.faq_heading != blank %}
+          <h3>{{ section.settings.faq_heading }}</h3>
+        {% endif %}
+        {{ section.settings.faq_content }}
+        <div class="faq-accrodian">
+          {{ faqContent }}
+        </div>
+      </div>
+    {% endif %}        
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Faqs",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Faqs section content"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_content",
+        "label":"Show title and description?",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Heading"
+      },
+      {
+        "type":"richtext",
+        "id":"content",
+        "label":"Description"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_icons",
+        "label":"Show patterns icon?",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"faq_heading",
+        "label":"Faq Heading"
+      },
+      {
+        "type":"richtext",
+        "id":"faq_content",
+        "label":"Faq Description"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"faqs",
+        "name":"Faqs",
+        "settings":[
+          {
+            "type":"text",
+            "id":"faq_title",
+            "label":"Faq title"
+          },
+          {
+            "type":"richtext",
+            "id":"faq_content",
+            "label":"Faq Content"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Faqa"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

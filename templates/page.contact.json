@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "pageBanner": {
+      "type": "banner",
+      "settings": {
+        "enable_banner": true,
+        "image": "shopify:\/\/shop_images\/contact-banner_2f0d171f-7aab-4d97-b781-c18cf2138285.png"
+      }
+    },
+    "contactForm": {
+      "type": "contact-form",
+      "blocks": {
+        "a7711aca-6bb0-4d75-87cc-eb6c5b8517d5": {
+          "type": "contact_info",
+          "settings": {
+            "heading": "Email us at",
+            "image": "shopify:\/\/shop_images\/email.svg",
+            "discription": "<p><a href=\"mailto:info@holsper.com\" title=\"mailto:info@holsper.com\">info@holsper.com<\/a><\/p>"
+          }
+        },
+        "2cec12a4-69b4-4e11-a575-6ec2590d935b": {
+          "type": "contact_info",
+          "settings": {
+            "heading": "Our Adress",
+            "image": "shopify:\/\/shop_images\/location-icon.svg",
+            "discription": "<p>110 Rolfe Street, Smethwick B66 2BD   United Kingdom<\/p>"
+          }
+        },
+        "ee41fa32-e89a-4fe0-ad9b-a44283140722": {
+          "type": "contact_info",
+          "settings": {
+            "heading": "Call Us at",
+            "image": "shopify:\/\/shop_images\/phone-icon.svg",
+            "discription": "<p><a href=\"tel:+01 234 567 8910\" title=\"tel:+01 234 567 8910\">+01 234 567 8910<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "a7711aca-6bb0-4d75-87cc-eb6c5b8517d5",
+        "2cec12a4-69b4-4e11-a575-6ec2590d935b",
+        "ee41fa32-e89a-4fe0-ad9b-a44283140722"
+      ],
+      "settings": {
+        "heading": "Get In Touch With Us",
+        "discription": "<p>Our Friendly team would love to hear from you!<\/p>"
+      }
+    },
+    "a8afbe42-a4e2-4da3-9c30-3aafbec2cdee": {
+      "type": "subscribe-newsletter-section",
+      "settings": {
+        "title": "Subscribe To Newsletter",
+        "description": "<p>Enter your email to receive £60 off your first bedding set !<\/p>"
+      }
+    }
+  },
+  "order": [
+    "pageBanner",
+    "contactForm",
+    "a8afbe42-a4e2-4da3-9c30-3aafbec2cdee"
+  ]
+}

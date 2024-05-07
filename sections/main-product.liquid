@@ -1,0 +1,215 @@
+<section class="pdp-wrapper" data-name="main-product">
+  <div class="container">
+    <div class="pdp-block">
+      <div class="pdp-images">
+        <div class="pdp-thumb ">
+          {%- for media in product.media -%}
+            {% render "product-thumbnail", media:media, image_type:"master", forindex:forloop.index0 %}
+          {%- endfor -%}
+        </div>
+        <div class="pdp-main-img mobile_slider">
+          {%- for media in product.media -%}
+            {% render "product-thumbnail", media:media, image_type:"thumbnail", forindex:forloop.index0 %}
+          {%- endfor -%}
+        </div>
+      </div>
+      
+      <div class="pdp-content">
+        {% assign inx = 0 %}
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when "title" -%}
+              <div class="pdp-name">
+                {{ product.title | escape }}
+              </div>
+            {%- when "price" -%}
+              <div class="pdp-price price flex align-center js-main-product-price">
+                {% if product.compare_at_price and product.compare_at_price > product.price %}
+                  <del>{{ product.compare_at_price | money }}</del>
+                {% endif %}
+                <ins>{{ product.price |  money }}</ins>
+              </div>
+            {% when "variant_picker" %}
+                <div class="pdp-color-box">
+                  {% render "variant-swatch", product:product %}            
+                </div>
+            {% when "rating" %}
+                {% render "rating" %}
+            {% when "buy_buttons" %}
+                {% render "buy-buttons",block:block %}
+            {% when "pdp-benifits" %} 
+                {% render "pdp-benifits", product:product %}
+            {% when "bundal-product" %}
+                {% render "bundal-product", block:block %}
+            {% when "product_accordian" %}
+                {% assign inx = inx | plus: 1 %}
+                {% render "product-accordian", block:block, inx:inx %} 
+            {% when "shipping_info" %}
+              {% capture shippingItem %}
+                {% if block.settings.heading != blank %}
+                  <div class="shipping-item">
+                    {% render "icons-lists", icon:"delivery_icon"  %}
+                    {{ block.settings.heading }}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading_1 != blank %}
+                  <div class="shipping-item">
+                    {% render "icons-lists", icon:"return_icon"  %}
+                    {{ block.settings.heading_1 }}
+                  </div>
+                {% endif %}
+              {% endcapture %}
+            
+              {% if shippingItem != blank %}
+                <div class="clear-pay">
+                  or 4 interest-free payments of <span>£37.25</span> with
+                </div>
+                <div class="shipping-block">
+                  {{ shippingItem }}
+                </div>
+              {% endif %}
+            
+            {% endcase %}
+          {%- endfor -%}          
+        </div>      
+    </div>
+    <div class="manage_metadata"> {% render "get-metafield-data", metadata:product %} </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Main product",
+    "settings": [],
+    "blocks":[
+      {
+        "type": "@app"
+      },
+      {
+        "type":"title",
+        "name":"Product title",
+        "limit":1
+      },
+      {
+        "type":"price",
+        "name":"Price",
+        "limit":1
+      },
+      {
+        "type":"variant_picker",
+        "name":"Variant picker",
+        "limit":1
+      },
+      {
+        "type": "description",
+        "name": "Description",
+        "limit": 1
+      },      
+      {
+        "type":"rating",
+        "name":"Product rating",
+        "limit":1
+      },
+      {
+        "type":"buy_buttons",
+        "name":"Buy buttons",
+        "limit":1,
+        "settings":[
+          {
+            "type":"checkbox",
+            "id":"show_dynamic_checkbox",
+            "label":"Show dynamic checkbox?",
+            "default":true
+          },
+          {
+            "type":"checkbox",
+            "id":"show_quantity_box",
+            "label":"Show quantity box",
+            "default":true
+          }
+        ]
+      },
+      {
+        "type":"pdp-benifits",
+        "name":"Product benifits",
+        "limit":1
+      },
+      {
+        "type":"product_accordian",
+        "name":"Product accordian",
+        "limit":6,
+        "settings":[
+          {
+            "type":"text",
+            "id":"heading",
+            "label":"Heading"
+          },
+          {
+            "type":"richtext",
+            "id":"content",
+            "label":"Content"
+          },
+          {
+            "type":"checkbox",
+            "id":"show_description",
+            "label":"Show content as product description?",
+            "default":false
+          }
+        ]
+      },
+      {
+        "type":"bundal-product",
+        "name":"Bundal product",
+        "limit":1,
+        "settings":[
+          {
+            "type":"text",
+            "id":"heading",
+            "label":"Heading"
+          },
+          {
+            "type":"inline_richtext",
+            "id":"subheading",
+            "label":"Sub heading"
+          }
+        ]
+      },
+      {
+        "type":"product_collection",
+        "name":"Product collection",
+        "settings":[
+          {
+            "type":"product_list",
+            "id":"bundle_product",
+            "label":"Select product for bundle"
+          }
+        ]
+      },
+      {
+        "type":"shipping_info",
+        "name":"Shipping info",
+        "limit":1,
+        "settings":[
+          {
+            "type":"text",
+            "id":"heading",
+            "label":"Heading"
+          },
+          {
+            "type":"text",
+            "id":"heading_1",
+            "label":"Heading"
+          }          
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

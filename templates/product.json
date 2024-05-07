@@ -1,0 +1,238 @@
+{
+  "sections": {
+    "283c0dd9-6d96-4fdc-a68e-7d0efee9ae69": {
+      "type": "banner",
+      "disabled": true,
+      "settings": {
+        "enable_banner": true,
+        "image": "shopify:\/\/shop_images\/faq-banner.png"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "e90b8e5e-f628-4b5d-8e32-ca85c623910a": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "eb96417b-778c-4e43-85ed-d1426caa0e76": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "9be61c30-242f-4009-9ecf-962f80c26678": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        },
+        "9aeb5128-7d7c-4df8-92a1-39bddbff8ea5": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/verified_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "9341a857-1ae0-4ae8-b280-8c87b4573c55": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "f72d8268-9cb5-42cd-b2f4-52b9033e81a1": {
+          "type": "pdp-benifits",
+          "settings": {
+          }
+        },
+        "d6b3adec-7233-4502-bb10-ee14da82cfe3": {
+          "type": "variant_picker",
+          "settings": {
+          }
+        },
+        "369197e9-1e47-4cac-a441-ebafa6573bc0": {
+          "type": "bundal-product",
+          "disabled": true,
+          "settings": {
+            "heading": "Add with bedding Set and Save",
+            "subheading": "<em>Save up to £40.00 when you buy pillows and bed sheet to accompany your bedding set.<\/em>"
+          }
+        },
+        "13dd7297-cd5b-4a31-b750-b4b54efa3009": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkbox": false,
+            "show_quantity_box": true
+          }
+        },
+        "d4e2d076-7e83-4c0b-972b-92ba5a4304b6": {
+          "type": "shipping_info",
+          "settings": {
+            "heading": "FREE UK DELIVERY",
+            "heading_1": "30 DAYS RETURN"
+          }
+        },
+        "9e00a41a-214c-45bd-a931-d0793f294b05": {
+          "type": "product_accordian",
+          "settings": {
+            "heading": "Description",
+            "content": "",
+            "show_description": true
+          }
+        },
+        "b8114f42-99a7-4691-b51a-8ef6603e7faa": {
+          "type": "product_accordian",
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<h6>ENJOY THE BEAUTY OF BLUE HEAVEN IN YOUR BEDROOM!<\/h6><p>Our beautiful Blue Birds bedding set combines sophisticated luxury with a natural<br\/>                                        feel to your bedroom. Designed with an<br\/>                                        intricate <strong>pattern of pastel blue flowers<\/strong>, blue peacocks, and<br\/>                                        <strong>tropical elements<\/strong><br\/>                                        that offers your room a beautiful,<br\/>                                        heavenly look.<br\/>                                    <\/p><p>This set includes everything you need to decorate your bed. The duvet cover comes<br\/>                                        with hidden zipper closure, more<br\/>                                        convenient to use than a regular button closure.<\/p><h6>MADE OF 100% EGYPTIAN COTTON AND 500 THREAD COUNT<\/h6><p>100% natural yarns with sateen weave last longer than regular cotton and make it<br\/>                                        more shiny and silky. This fabric will<br\/>                                        offer you the utmost comfort and smoothness like luxurious hotel bedding.<\/p><p>Our premium quality bedding gets softer with every wash and doesn't fade<br\/>                                        away, giving you a feel of luxury and comfort<br\/>                                        in just one buy. With good colour fastness and minimum shrinkage, you will<br\/>                                        experience long-lasting comfort for sure.<\/p><p>It’s time to sleep with a good vibe! Get one for you now.<br\/>                                    <\/p>",
+            "show_description": false
+          }
+        },
+        "994c131f-24e7-48a9-85f5-c4ce1d95cdbc": {
+          "type": "product_accordian",
+          "settings": {
+            "heading": "Delivery & Returns",
+            "content": "",
+            "show_description": false
+          }
+        }
+      },
+      "block_order": [
+        "e90b8e5e-f628-4b5d-8e32-ca85c623910a",
+        "eb96417b-778c-4e43-85ed-d1426caa0e76",
+        "9be61c30-242f-4009-9ecf-962f80c26678",
+        "9aeb5128-7d7c-4df8-92a1-39bddbff8ea5",
+        "9341a857-1ae0-4ae8-b280-8c87b4573c55",
+        "f72d8268-9cb5-42cd-b2f4-52b9033e81a1",
+        "d6b3adec-7233-4502-bb10-ee14da82cfe3",
+        "369197e9-1e47-4cac-a441-ebafa6573bc0",
+        "13dd7297-cd5b-4a31-b750-b4b54efa3009",
+        "d4e2d076-7e83-4c0b-972b-92ba5a4304b6",
+        "9e00a41a-214c-45bd-a931-d0793f294b05",
+        "b8114f42-99a7-4691-b51a-8ef6603e7faa",
+        "994c131f-24e7-48a9-85f5-c4ce1d95cdbc"
+      ],
+      "settings": {
+      }
+    },
+    "tabs_section_i3qAM6": {
+      "type": "tabs-section",
+      "blocks": {
+        "product_description_NmcEtU": {
+          "type": "product_description",
+          "settings": {
+            "tab_title": "Description",
+            "tab_content": ""
+          }
+        },
+        "tab_JJ9DaT": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "About",
+            "tab_content": "<p>{{ product.metafields.custom.about_the_product | metafield_tag }}<\/p>"
+          }
+        },
+        "tab_RkamWr": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Rating",
+            "tab_content": ""
+          }
+        },
+        "tab_JBWQ3z": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "About us",
+            "tab_content": "<p>{{ product.metafields.custom.about_us | metafield_tag }}<\/p>"
+          }
+        },
+        "tab_xQBnkk": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "",
+            "tab_content": "<p>same introduction about the products<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "product_description_NmcEtU",
+        "tab_JJ9DaT",
+        "tab_RkamWr",
+        "tab_JBWQ3z",
+        "tab_xQBnkk"
+      ],
+      "settings": {
+        "heading": "{{ product.metafields.custom.product_heading.value }}",
+        "short_description": "<p>{{ product.metafields.custom.product_short_description | metafield_tag }}<\/p>",
+        "image": "{{ product.metafields.custom.product_image.value }}"
+      }
+    },
+    "dcfe928f-023f-4090-ba1c-9487b7202ea1": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "button_label": "View all",
+        "button_url": ""
+      }
+    },
+    "recently_view_product_HXizL3": {
+      "type": "recently-view-product",
+      "settings": {
+        "heading": "Recently view products",
+        "button_label": "View all",
+        "button_url": ""
+      }
+    },
+    "3e0c1f23-ff47-42f7-9afe-f1c0dd93497b": {
+      "type": "best-fabric-products",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/fabric-big.jpg",
+        "main_title": "Motif Collection",
+        "sub_title": "Beautiful bedding can be a luxury. High quality printed motifs in combination with 100% Egyptian Cotton fabrics. Most of our sets come with 4 pieces set and 500TC.",
+        "collection": "bed-sheet",
+        "slide_text": "View all",
+        "last_slide_url": "shopify:\/\/collections\/bed-sheet"
+      }
+    },
+    "170409972136acf496": {
+      "type": "apps",
+      "blocks": {
+        "92ede251-bd52-4768-bde1-6267b5bc5ae8": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "92ede251-bd52-4768-bde1-6267b5bc5ae8"
+      ],
+      "settings": {
+      }
+    },
+    "17041677204c5c08c5": {
+      "type": "apps",
+      "blocks": {
+        "42a0136a-320b-4ace-bcb4-c4a05b1133f2": {
+          "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/form-embed-block\/2632fe16-c075-4321-a88b-50b567f42507",
+          "disabled": true,
+          "settings": {
+            "formId": "VmSeNz"
+          }
+        }
+      },
+      "block_order": [
+        "42a0136a-320b-4ace-bcb4-c4a05b1133f2"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "283c0dd9-6d96-4fdc-a68e-7d0efee9ae69",
+    "main",
+    "tabs_section_i3qAM6",
+    "dcfe928f-023f-4090-ba1c-9487b7202ea1",
+    "recently_view_product_HXizL3",
+    "3e0c1f23-ff47-42f7-9afe-f1c0dd93497b",
+    "170409972136acf496",
+    "17041677204c5c08c5"
+  ]
+}

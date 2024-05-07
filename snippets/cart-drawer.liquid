@@ -1,0 +1,140 @@
+<div class="overlay"></div>
+<div class="fullPage"></div>
+<div class="cartDrawer">
+  <div class="mini-cart-header">
+    <h4>{{ 'cart.cartDrawer.title' | t }}</h4>
+    <div class="cart-tottl-itm">{{ cart.item_count }} {{ 'cart.cartDrawer.item' | t }}</div> 
+    <span class="cart-count-bubble" style="display:none;"><span>{{ cart.item_count }}</span></span>
+    <a href="javascript:void(0)" class="closecart">{% render "icons", icon:"close_cart_icon" %} </a>
+  </div>
+  <div id="crt" class="mini-cart-has-item">
+    <div class="mini-cart-body">
+      <form
+        action="{{ routes.cart_url }}"
+        id="CartDrawer-Form"
+        class="cart__contents cart-drawer__form"
+        method="post"
+        >
+        {%- if cart == empty -%}
+          <p class="emptyCart text-center">{{ 'cart.cartDrawer.empty_cart' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="link-btn">
+           {{ 'cart.cartDrawer.contine_shop' | t }}
+            {% render "icons",icon:"right_side_arrow" %}
+          </a> 
+        {%- endif -%} 
+        {%- if cart != empty -%}
+          {% for item in cart.items %}
+            <div class="mini-cart-item" data-item_line="">
+              <div class="mini-cart-image">
+                {% if item.image %}
+                  <a href="{{ item.url }}" title="SPACE BAG">
+                    {{ item.image | image_url :width:auto | image_tag }}
+                  </a>
+                {% endif %}
+              </div>
+              <div class="mini-cart-details">
+                <p class="mini-cart-title"><a href="{{ item.url }}">{{ item.title }}</a></p>
+                <div class="price flex align-center">
+                {% if item.variant.compare_at_price %}    
+                  <del>{{ item.variant.compare_at_price | money }}</del> 
+                {% endif %}  
+                <ins>{{ item.final_price | money }}</ins>
+                </div>
+                
+                {%- if item.product.has_only_default_variant == false -%}
+                  <div class="cart-variable">
+                    {%- for option in item.options_with_values -%}
+                      <p><strong>{{ option.name }}:</strong> {{ option.value }} {% unless forloop.last %}, {% endunless %} </p>                      
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+            
+                <div class="pvarprice flex align-center justify-between">
+                  <div class="qty-spinner">
+                    <button type="button" class="js-qty-update quantity-decrement " 
+                      data-variant_id="{{ item.variant_id }}"
+                      data-item_key ="{{ item.key }}" 
+                      data-qty_status="minus"
+                      >
+                      {% render "icons",icon:"minus_icon" %}
+                    </button>
+                    <input type="text" class="quantity"
+                      data-cke-saved-name="quantity"
+                      name="quantity"
+                      value="{{ item.quantity }}"
+                      min="1"
+                      max="100"
+                      disabled
+                      >
+                    <button type="button" class="js-quantity-update quantity-increment" 
+                      data-variant_id="{{ item.variant_id }}" 
+                      data-item_key ="{{ item.key }}" 
+                      data-qty_status="minus"
+                      >
+                      {% render "icons",icon:"plus_icon" %}
+                    </button>
+                    </div>
+                    {% liquid
+                      assign itemProperty =''
+                      assign PropertyClass =''
+                    %}
+                    {% assign itemProperty ='' %}
+                    {% if item.properties["_Bundle_pack"] %}
+                      {% assign itemProperty = "Bundle_pack" %}
+                      {% assign PropertyClass = "bdl_" | append:item.properties["_Bundle_pack"]  %}
+                    {% endif %}
+            
+                    <a class="{{ itemProperty }} {{ PropertyClass }} remove_item" title="Remove item" 
+                      href="javascript:void(0);" 
+                      data-variant_id="{{ item.variant_id }}" 
+                      data-item_key ="{{ item.key }}" 
+                      data-item_property_value="{{ item.properties["_Bundle_pack"] }}"
+                      > 
+                      {% render "icons",icon:"remove_icon" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+           {% endfor %}
+         {% endif %}       
+       </form>
+    </div>
+     
+      <div class="mini-cart-footer">
+        {%- if cart != empty -%}
+        <div class="mini-cart-footer-total-row flex align-center justify-between">
+          <div class="mini-total-lbl">
+            {{ 'cart.cartDrawer.subtotal' | t }} :
+          </div>
+          <div class="mini-total-price">
+            {{ cart.items_subtotal_price | money }}
+          </div>
+        </div>
+       
+        {% if cart.total_discount > 0 %}
+          <div class="u-save flex justify-end">
+            {{ 'cart.cartDrawer.you_save' | t }}: {{ total_discount | money }}
+          </div> 
+        {% endif %}
+        <button
+            type="submit"
+            id="CartDrawer-Checkout"
+            class="btn checkout-btn"
+            name="checkout"
+            form="CartDrawer-Form"
+            {% if cart == empty %}
+              disabled
+            {% endif %}
+          >
+            {{ 'cart.cartDrawer.checkout_btn' | t }}
+            {% render "icons", icon:"checkout_bag_icon" %}
+          </button>  
+        
+        <a href="/collections/all" class="link-btn">
+           {{ 'cart.cartDrawer.contine_shop' | t }}
+          {% render "icons",icon:"right_side_arrow" %}
+        </a>
+        {% endif %}
+      </div>
+  </div>
+</div>

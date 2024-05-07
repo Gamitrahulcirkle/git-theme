@@ -1,0 +1,115 @@
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+<div class="pdp-qty-add-box">
+  {% if block.settings.show_quantity_box %}
+    <div class="color-box-label">
+      <label>{{ 'products.product.quantity' | t }}</label>
+    </div>
+  {% endif %}
+  
+  {%- form 'product',
+     product,
+     id: product_form_id,
+     class: 'js-product-form'
+  -%}
+    <select id="product-select" name="id">
+      {% for variant in product.variants %}
+        <option {% if variant==product.selected_or_first_available_variant %}
+          selected="selected" {% endif %} value="{{ variant.id }}"
+          data-inv_qty="{{variant.inventory_quantity}}"
+          >
+          {{ variant.title }} - {{ variant.price | money }} -
+        </option>
+      {% endfor %}
+    </select>
+  
+    <div class="add-to-cart-btn-wrapper">
+      {% if block.settings.show_quantity_box %}
+        <div class="qty-spinner">
+          <button type="button" class="quantity-decrement ">
+            {% render "icons",icon:"minus_icon" %}
+          </button>
+          <input type="text" 
+            id="quantity"
+            class="quantity" 
+            data-cke-saved-name="quantity" 
+            name="quantity"
+            value="01" min="01" max="100">
+          <button type="button" class="quantity-increment ">
+            {% render "icons",icon:"plus_icon" %}
+          </button>
+        </div>       
+      {% endif %}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+        class="product-variant-id"
+        >
+         {% if product.selected_or_first_available_variant.available == false %}
+           <a data-cke-saved-href="#" href="javascript:void(0);" class="js-btn-manage btn" tabindex="0">
+            {{ 'products.product.sold_out' | t }}          
+          </a>
+         {% else %}
+           <a data-cke-saved-href="#" href="javascript:void(0);" class="js-btn-manage js-add-to-cart  main-add-to-cart-btn add-to-cart-btn btn" tabindex="0">
+            {{ 'products.product.add_to_cart' | t }}
+            {% render "icons", icon:"checkout_bag_icon" %}
+          </a>
+         {% endif %}          
+       </div>
+       {% if block.settings.show_dynamic_checkbox %}
+         {{ form | payment_button }}
+       {% endif %}
+       <div class="cart-error-msg"></div>
+    {% endform %} 
+  </div>
+  
+
+<script>  
+  var money_format = "{{ shop.money_format }}";   
+  var template_name = "{{ template }}";
+  
+  var selectCallback = function(variant, selector) {
+    console.log(variant);
+    $('input[name="id"]').val(variant.id);
+    if (variant) {      
+      if (variant.available) {
+        var vPrice = '';
+        if( variant.compare_at_price != null && variant.compare_at_price >  variant.price ){          
+          vPrice +='<del>'+ Shopify.formatMoney(variant.compare_at_price, money_format) + '</del>';          
+        }         
+        vPrice +='<ins>'+ Shopify.formatMoney(variant.price, money_format)+'</ins>';        
+        $(".js-main-product-price").html(vPrice)
+        $(".js-btn-manage").addClass("main-add-to-cart-btn add-to-cart-btn");
+        $(".js-btn-manage").text("Add To Cart");
+      } else {
+        // Variant is sold out.
+        $(".js-btn-manage").removeClass("main-add-to-cart-btn add-to-cart-btn");
+        $(".js-btn-manage").text('Sold out');
+      }      
+    } else {
+      // variant doesn't exist.
+    }
+
+    if( typeof variant.featured_media !=="undefined" && variant.featured_media !="" ){
+      let headeroffset = $("header").height();
+      let elementId = $(`[data-media_id="${ variant.featured_media.id }"]`).attr("id");    
+      let element = $("#"+elementId);
+      
+      scrollImage(element, headeroffset);  // function call on custom.js line: 359   
+    }
+  }
+  
+  // initialize multi selector for product
+  jQuery(function($) {
+    var history_enable = false;
+    if( template_name == "product" ){
+      history_enable = true;      
+    }
+    new Shopify.OptionSelectors("product-select", { product: {{ product | json }} , onVariantSelected: selectCallback , enableHistoryState: history_enable });
+    
+  });
+</script>
+

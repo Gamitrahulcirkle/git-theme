@@ -1,0 +1,187 @@
+<style>
+  .brushed-cotton-sliders.hover-show {
+    display: flex;
+    flex-wrap: wrap;
+  }
+ .brushed-cotton-sliders .product-card {
+    flex: 25%;
+    max-width: 33.33%;
+  }
+  .manage_btn {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 60px;
+    cursor:pointer;
+}
+  .pause-btn {
+    display: none;
+}
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: -1%;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+.embed-responsiv{ overflow: hidden; text-align: center; }
+</style>
+<script src="https://player.vimeo.com/api/player.js" defer></script>
+<script src="https://www.youtube.com/iframe_api" defer></script>
+
+<section class="brushed-cotton-section" data-name="videos">
+  <div class="container">
+      {% if section.settings.title != blank %}
+        <div class="section-title text-center">
+            <h2>{{ section.settings.title }}</h2>
+        </div>
+       {% endif %}
+       {% assign videoType = "" %}
+       {% assign video_id = "" %}
+       <div class="brushed-cotton-sliders hover-show">                      
+        {% for block in section.blocks %}
+          {% case block.type %}            
+            {% when "manage_video" %}              
+              <div class="product-card">
+                <div class="product-card-inner">
+                  <div class="product-card-img">
+                    
+                    {% assign videoType = "" %}
+                    {% assign videoUlr ="" %}
+            
+                    {% if block.settings.image != blank %}
+                      {{ block.settings.image | image_url: width:450, height:450, crop:"center" |  image_tag }}
+                    {% endif %}  
+                                        
+                    {%- liquid assign video_id = block.settings.video.id | default: block.settings.video_url.id %}
+            
+                    {%- if block.settings.video == null and block.settings.video_url != null -%}
+                      {%- if block.settings.video_url.type == 'youtube' -%}
+                       {% assign videoType = block.settings.video_url.type %}
+                      {%- else -%}
+                        {% assign videoType = block.settings.video_url.type %}
+                      {%- endif -%}
+                    {%- else -%}
+                      {% assign videoUlr = block.settings.video.sources[0].url %}
+                      {% assign videoType = block.settings.video.type %}
+                    {%- endif -%}
+                    
+                    <div class="manage_btn">
+                      <div class="play-btn" data-target="#customModal_{{ section.id }}" 
+                        data-videoModal="{{ block.settings.video_url | addresses_url }}"
+                        data-video_id="{{ video_id }}"
+                        data-video_type="{{ videoType }}"
+                        data-section_id="{{ section.id }}"
+                        {% if videoUlr != blank %} 
+                          data-video_url ="{{ videoUlr }}"
+                        {% endif %}
+                        >
+                        <img src="{{ 'play-button.png' | asset_img_url }}">
+                      </div>
+                      <div class="pause-btn" 
+                        data-video_type="{{ videoType }}"
+                        data-video_id="{{ video_id }}"
+                        >
+                        <img src="{{ 'pause.png' | asset_img_url }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          {% endcase %}            
+        {% endfor %}
+      </div>
+    </div>
+</section>
+
+<div id="customModal_{{ section.id }}" class="modal">
+  <div class="modal-content">
+    <span class="close" data-section_id="{{ section.id }}">&times;</span>
+    <div class="embed-responsiv">
+      <div id="youtubePlayer_{{ section.id }}"></div>      
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Manage videos",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title",
+        "default":"Title"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"manage_video",
+        "name":"Manage Video",
+        "limit":3,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"video",
+            "id":"video",
+            "label":"Video"
+          },
+          {
+            "type": "video_url",
+            "id": "video_url",
+            "label": "Product description video",
+            "accept": [
+              "youtube",
+              "vimeo"
+            ]
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Manage videos",
+        "category":"Videos"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

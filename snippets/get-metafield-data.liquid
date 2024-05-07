@@ -1,0 +1,33 @@
+{% comment %} 
+ @ parameter metadata get
+{% endcomment %}
+{% comment %}
+<div class="metadata">
+  <h4>Multiline text</h4> 
+  {{ product.metafields.custom.information | metafield_tag }}
+</div>
+<div class="metadata">
+  <h4>Rich text</h4>
+  {{ product.metafields.custom.infowithrichtext | metafield_tag }}
+</div>
+<div class="metadata">
+  <h4>Json</h4>  
+  {% if product.metafields.custom.metajson.value.size > 0  %}    
+    <div>{{ product.metafields.custom.metajson.value['product'] }}</div>
+    <div>{{ product.metafields.custom.metajson.value['title'] }}</div>
+    <div>{{ product.metafields.custom.metajson.value['meta'] }}</div>
+  {% endif %}
+</div>
+<div class="metadata">
+  <h4>Measurement</h4>
+  {{ product.metafields.custom.dimension | metafield_tag }}
+</div>
+<div class="metadata">
+  <h4>Date and time </h4>
+  {{ product.metafields.custom.date_and_titme | metafield_tag }}
+</div>
+<div class="metadata">
+  <h4>Number </h4>
+  {{ product.metafields.custom.decimal_number | metafield_tag }}
+</div>
+{% endcomment %}

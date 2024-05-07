@@ -1,0 +1,25 @@
+<div class="product-settings" data-section_name="product-settings">
+  {% if section.settings.product != blank %}
+    {% assign product = section.settings.product %}
+    <h2>{{ product.title }}</h2>
+    {{ product.featured_image | image_url:width:product.featured_image.width |  image_tag }}
+    <div class="price">{{ product.price | money }}</div>
+  {% else %} 
+    <h3>No product found!</h3>
+  {% endif %}
+</div>
+{% schema %}
+  {
+    "name": "Product settings",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      }
+    ],
+    "presets": [{
+      "name": "Product settings"
+    }]
+  }
+{% endschema %}

@@ -1,0 +1,120 @@
+<section class="what-company-says" data-name="review-section">
+    <div class="container">
+      {% if section.settings.title != blank %}
+        <div class="section-title text-center">
+          <h2>{{ section.settings.title }}</h2>
+          {{ section.settings.review_description }}
+        </div>
+      {% endif %}      
+      <div class="review-slider common-arrow hover-show">
+        {% for block in section.blocks %}
+         {%- case block.type -%}
+           {%- when "reviews_section" -%}
+             <div class="review-slider-itm">
+               <div class="review-slider-itm-inner">
+                 {% if block.settings.image != blank %}
+                   <div class="review-slider-itm-img">
+                     {{ block.settings.image | image_url:width:auto | image_tag }}
+                   </div>
+                 {% endif %}
+                 <div class="review-slider-itm-content">
+                   {% if block.settings.review_img != blank %}
+                     <div class="stars">
+                       {{ block.settings.review_img | image_url:width:auto | image_tag }}
+                     </div>
+                   {% endif %}
+                   {% if block.settings.review_title != blank %}
+                     <h4>{{ block.settings.review_title }}</h4>
+                   {% endif %}
+                   {{ block.settings.review_comment }}
+                   {% if block.settings.text != blank %}
+                     <span class="itm-type">{{ block.settings.text }}</span>
+                   {% endif %}
+                 </div>
+               </div>
+             </div>                
+           {%- endcase -%}
+         {% endfor %}
+       </div>
+      
+        {% if section.settings.button_label != blank %}
+          <div class="flex justify-center view-all-btn">
+            <a href="{{ section.settings.button_url | default:'#'}}" class="link-btn">
+              {{ section.settings.button_label }}
+              {% render "icons",icon:"right_black_arrow" %}            
+            </a>
+          </div>
+        {% endif %}        
+    </div>
+</section>
+{% schema %}  
+  {
+    "name": "Reviews section",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"richtext",
+        "id":"review_description",
+        "label":"Review description"
+      },
+      {
+        "type":"text",
+        "id":"button_label",
+        "label":"Button label"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button URL"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"reviews_section",
+        "name":"Reviews section",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"image_picker",
+            "id":"review_img",
+            "label":"Review icon"
+          },
+          {
+            "type":"text",
+            "id":"review_title",
+            "label":"Review title"
+          },
+          {
+            "type":"richtext",
+            "id":"review_comment",
+            "label":"Review comment"
+          },
+          {
+            "type":"text",
+            "id":"text",
+            "label":"Text"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Reviews section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,79 @@
+<section class="home-collection-section" data-name="home-collection-section">
+  <div class="container">
+      <div class="heading-row flex align-center justify-between">
+        <ul class="cat-tab tabs flex align-center">
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+              {%- when "tab_content" -%}
+                <li class="tab-link {% if forloop.first %} active {% endif %}" data-tab="tab-{{ forloop.index }}"><a href="javascript:void(0);">{{ block.settings.tab_title }}</a></li>
+            {%- endcase -%}
+          {% endfor %}
+        </ul>
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_url | default:'#' }}" class="link-btn">
+              {{ section.settings.button_label }}
+             {% render "icons",icon:"right_black_arrow" %}            
+          </a>
+        {% endif %}
+      </div>
+      
+     {% for block in section.blocks %}
+       {%- case block.type -%}
+         {%- when "tab_content" -%}                
+            <div id="tab-{{ forloop.index }}" class="tab-content {% if forloop.first %} active {% endif %}">
+              <div class="home-collection-slider hover-show">                      
+                {% for card_item in block.settings.collection.products %}
+                  {% render "card-product",card_product:card_item %}
+                {% endfor %}
+              </div>
+            </div>                 
+       {%- endcase -%}
+     {% endfor %}
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Home collection section",
+    "settings": [
+      {
+        "type":"text",
+        "id":"button_label",
+        "label":"Button label"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button URL"
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Tab content",
+        "type":"tab_content",
+        "settings":[
+          {
+            "type":"text",
+            "id":"tab_title",
+            "label":"Tab title"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Select collection"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Home collection section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

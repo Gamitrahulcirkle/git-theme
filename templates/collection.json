@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "mainCollectionBanner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "enable_banner": true,
+        "image": "shopify:\/\/shop_images\/contact-banner.png"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 6,
+        "columns_desktop": 4,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "columns_mobile": "2"
+      }
+    }
+  },
+  "order": [
+    "mainCollectionBanner",
+    "main"
+  ]
+}

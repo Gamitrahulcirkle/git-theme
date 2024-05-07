@@ -1,0 +1,134 @@
+<section class="brushed-cotton-section you-may-also-like-section" data-name="related-products">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+    <div class="section-title text-center">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    {% endif %}
+    <div class="brushed-cotton-slider hover-show">
+      {% assign collection_handle = 'all' %}
+      {% assign indx = 1 %} 
+      {% for calProduct in collections[collection_handle].products %}
+       {% if calProduct.handle != product.handle %}
+          {% render "card-product",
+            card_product:calProduct,
+            class:"brushed-cotton-itm" 
+          %}
+         {% if indx == 4 %}
+           {% break %}
+         {% endif %}  
+          {% assign indx = indx | plus:1 %}
+         {% endif %}
+      {% endfor %}      
+    </div>
+
+    {% if section.settings.button_label != blank %}
+      <div class="flex justify-center view-all-btn">
+        <a href="{{ section.settings.button_url }}" class="btn">
+          {{ section.settings.button_label }}
+          {% render "icons",icon:"right_black_arrow" %}
+        </a>
+      </div>
+    {% endif %}   
+  </div>
+</section>
+
+
+{% comment %}
+<div
+  class="product-recommendations"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=5&intent=related"
+>  
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    {% if recommendations.intent == 'related' %}
+      <h2>You may also like</h2>
+    {% elsif recommendations.intent == 'complementary' %}
+      <h2>Pair it with</h2>
+    {% endif %}
+
+    <ul>
+      {%- for product in recommendations.products -%}
+        <li class="product">
+          <a href="{{ product.url }}">
+            <img
+              class="product__img"
+              src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
+              alt="{{ product.featured_image.alt }}"
+              width=""
+              height=""
+            />
+
+            <p class="product__title">{{ product.title }}</p>
+            <p class="product__price">{{ product.price | money}}</p>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+
+{% javascript %}
+  
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;    
+    observer.unobserve(productRecommendationsSection);
+
+    const url = productRecommendationsSection.dataset.url;
+
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('.product-recommendations');
+
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        }
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  };
+
+  const productRecommendationsSection = document.querySelector('.product-recommendations');
+  const observer = new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'});
+
+  observer.observe(productRecommendationsSection);
+  
+{% endjavascript %}
+{% endcomment %}
+
+{% schema %}
+  {
+    "name": "Related Products",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Heading",
+        "default":"You may also like"
+      },
+      {
+        "type":"text",
+        "id":"button_label",
+        "label":"Button label",
+        "default":"View all"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button URL"
+      }
+    ],
+    "presets":[
+      {
+        "name":"Related Products"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

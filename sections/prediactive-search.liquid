@@ -1,0 +1,79 @@
+{% comment %} <div class="overlay"></div> {% endcomment %}
+<div id="prediactive_result">
+  <div class="result_left">
+    {% if predictive_search.resources.collections.size > 0 %}
+      <div class="collection_result">
+        <h2 class="h2">Collection</h2>
+        <ul>
+          {%- for collection in predictive_search.resources.collections -%}
+            <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    
+    {%- if predictive_search.resources.pages.size > 0 -%}
+      <div class="page_result">
+        <h2 class="h2">Page</h2>
+        <ul>
+          {%- for page in predictive_search.resources.pages -%}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {%- endif -%}
+    
+    {% if predictive_search.resources.articles.size > 0 %}
+      <div class="article_result">
+        <h2 class="h2">Articles</h2>
+        <ul>
+          {% for article in predictive_search.resources.articles %}
+            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}    
+  </div>
+  
+  <div class="result_right">
+  {% if predictive_search.resources.products.size > 0 %}
+    <div class="products_results">
+      <h2 class="h2">Products</h2>
+      <ul>
+        {%- for product in predictive_search.resources.products -%}
+          <li>
+            <a href="{{ product.url }}">
+              <div class="product_img">
+                {%- if product.featured_media != blank -%}
+                  <img
+                    class="predictive-search__image"
+                    src="{{ product.featured_media | image_url: width: 150 }}"
+                    alt="{{ product.featured_media.alt }}"
+                    width="50"
+                    height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="product_content">
+                <p>{{ product.title }}</p>
+             </div>
+           </a>
+          </li>        
+        {%- endfor -%}
+      </ul>
+    </div>  
+  {% endif %}
+ </div>
+</div>
+{% schema %}
+  {
+    "name": "Prediactive search",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

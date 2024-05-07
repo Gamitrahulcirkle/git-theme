@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "bundle": {
+      "type": "bundle-products",
+      "blocks": {
+        "162444a2-eb4a-4132-8123-b0a3a6fbed88": {
+          "type": "bunde_product_tab",
+          "settings": {
+            "cat_title": "Bed sheet",
+            "product_list_1": [
+              "dev-flamingo-paradise-bed-sheet",
+              "gold-luxury-bed-sheet",
+              "golden-birds-bed-sheet"
+            ],
+            "product_list_2": [
+              "lily-jade-bed-sheet",
+              "purple-flowers-bed-sheet"
+            ],
+            "product_list_3": [
+              "vintage-jacquard-bed-sheet",
+              "spring-flowers-bed-sheet"
+            ]
+          }
+        },
+        "7c73255b-56a2-400b-a956-a9ec2d8d5170": {
+          "type": "bunde_product_tab",
+          "settings": {
+            "cat_title": "Duvet Cover",
+            "product_list_1": [
+              "vintage-jacquard-bed-sheet",
+              "spring-flowers-bed-sheet",
+              "silver-brown-bed-sheet"
+            ],
+            "product_list_2": [
+              "purple-flowers-bed-sheet",
+              "lily-jade-bed-sheet",
+              "golden-birds-bed-sheet"
+            ],
+            "product_list_3": [
+
+            ]
+          }
+        },
+        "bunde_product_tab_rp9rfa": {
+          "type": "bunde_product_tab",
+          "settings": {
+            "cat_title": "new dev test",
+            "product_list_1": [
+              "1-bottle-purfume-bundle",
+              "2-bottle-purfume-bundle",
+              "3-bottle-purfume-bundle"
+            ],
+            "product_list_2": [
+
+            ],
+            "product_list_3": [
+
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "162444a2-eb4a-4132-8123-b0a3a6fbed88",
+        "7c73255b-56a2-400b-a956-a9ec2d8d5170",
+        "bunde_product_tab_rp9rfa"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "bundle"
+  ]
+}

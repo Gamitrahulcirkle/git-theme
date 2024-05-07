@@ -1,0 +1,20 @@
+{% capture benifitsList %} 
+  {% for list in product.metafields.custom.product_key_benifits.value %}
+    <li>
+      {% render "icons-lists",icon:"lists_icon" %}
+      {{ list }}
+    </li>
+  {% endfor %}  
+{% endcapture %}
+{% if benifitsList !=blank %}
+  <div class="pdp-benifits">
+    <ul class="style-list">
+      {{ benifitsList }}
+    </ul>
+  </div>
+{% endif %}
+{% if product.metafields.custom.product_benifits_line.value != blank %}
+  <div class="pdp-benifits-line">
+    <i>{{ product.metafields.custom.product_benifits_line.value }}</i>
+  </div>
+{% endif %}

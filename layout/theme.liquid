@@ -1,0 +1,167 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  {%- if canonical_url != blank  -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- endif -%}
+  {%- if settings.favicon != blank -%}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css">
+  {%- capture seo_title -%}
+  {%- if request.page_type == 'search' and search.performed == true -%}
+  {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+  {%- else -%}
+  {{ page_title }}
+  {%- endif -%}
+  {%- if current_tags -%}
+  {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {%- endif -%}
+  {%- if current_page != 1 -%}
+  &ndash; {{ 'general.meta.page' | t: page: current_page }}
+  {%- endif -%}
+  {%- assign escaped_page_title = page_title | escape -%}
+  {%- unless escaped_page_title contains shop.name -%}
+  &ndash; {{ shop.name }}
+  {%- endunless -%}
+  {%- endcapture -%}
+
+  <title>{{ seo_title | strip }}</title>
+
+  {%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=XEUatd"></script>
+  {% include 'social-meta-tags' %}
+
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+  {{ 'jquery.min.js' | asset_url | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  
+  {%- if template contains 'customers' -%}
+  {{ 'customer.scss.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+  {%- endif -%}
+
+  <script src="{{ 'slick.min.js' |asset_url }}" defer="defer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js" defer="defer"></script>
+  <script src="{{ 'custom.js' |asset_url }}" defer="defer"></script>
+  {{ 'ajaxinate.min.js' | asset_url | script_tag }}
+  <style>
+    .single-option-selector, #product-select { display:none; }
+    .selector-wrapper { display: none; }
+    label.checked_input:before {
+      content: "";
+      position: absolute;
+      height: 34px;
+      width: 34px;
+      border: 2px solid #61afb3;
+      box-sizing: border-box;
+      filter: drop-shadow(0px 0px 10px rgba(0,0,0,.08));
+      border-radius: 50%;
+      left: 0;
+      transform: translate(-4.5px,-4.5px);
+    }
+    div#AjaxinatePagination {
+      text-align: center;
+    }
+</style>
+
+
+ 
+  
+</head>
+<body class="template-{{ template | split: '.' | first }} body">
+  
+  {% section 'header' %}  
+  <div class="wrapper">    
+    {% if template == "product" %}
+      {% render "breadcurms" %}
+    {% endif %}  
+    {{ content_for_layout }}
+  </div>
+  {% if template !="cart" %}
+    {% render "cart-drawer" %}
+  {% endif %}
+  {% section 'footer' %}
+  {% render "quick-view" %}
+  
+<script>
+  // On product detail page for product swatch change js
+  var mf = '{{ shop.money_format }}';
+  var templatName = '{{ template.name }}';
+  jQuery(function() {
+    
+    <!--- Product search based on SKU -->
+    jQuery(document).on("change","#product-sku", function(){
+      let sku = jQuery(this).val();      
+      $.get(`/search/suggest?q=variants.sku:${ sku }&type=product&section_id=product-search-based-sku`, function(data){
+        console.log('data ===', data);
+        $(".product-sku-title").html( $(data).find(".product_content").html() );
+      })
+    })
+  <!--- Script for single product page variant swatch change -->
+    jQuery(document).on("change", ".swatche :radio", function(){         
+      var optionIndex = jQuery(this).closest('.swatche').attr('data-option-index');
+      var optionValue = jQuery(this).val();      
+      
+      if( templatName !=="product" ){
+        jQuery(this)
+          .closest('.product-details')
+          .find('.single-option-selector')
+          .eq(optionIndex)
+          .val(optionValue)
+          .trigger('change');
+      }else{
+        jQuery(".js-product-form")
+          .closest('form')
+          .find('.single-option-selector')
+          .eq(optionIndex)
+          .val(optionValue)
+          .trigger('change');
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var endlessScroll = new Ajaxinate({
+      container: '#ajaxData',
+      pagination: '#AjaxinatePagination',
+      loadingText: '<center><img src="https://cdn.shopify.com/s/files/1/0678/1144/2932/files/loader.gif?100" width="50px"></center>'
+    });
+});
+</script>
+  <div class="wrapper">
+    <div class="container"> 
+      <div class="product-sku">
+        <h2>Get product detail based on SKU</h2>
+        <select id="product-sku" name="sku-select">
+          <option value="SKU001">SKU001</option>
+          <option value="SKU002">SKU002</option>
+          <option value="SKU003">SKU003</option>
+          <option value="SKU004">SKU004</option>
+          <option value="SKU005">SKU005</option>
+          <option value="SKU006">SKU006</option>
+          <option value="SKU007">SKU007</option>
+          <option value="SKU008">SKU008</option>
+          <option value="SKU0015">SKU0015</option>
+          <option value="SKU0016">SKU0016</option>
+        </select>
+        <div class="product-sku-title"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+

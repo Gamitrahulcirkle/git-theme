@@ -1,0 +1,29 @@
+{% if section.settings.enable_banner %}
+  <section class="common-banner-section" data-name="main-collection-banner">
+  {{ section.settings.image | image_url:width:auto | image_tag }}
+  </section>
+{% endif %}
+{% schema %}
+  {
+    "name": "Collection banner section",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable_banner",
+        "label":"Show collection banner?",
+        "default":true
+      },
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

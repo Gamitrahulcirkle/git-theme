@@ -1,0 +1,95 @@
+<section class="shp-now-pay-letter-section" data-name="shop-now-pay-letter-section">
+  {% if section.settings.title != blank or section.settings.image != blank %}
+    <div class="bottom-pink-fill"></div>
+  {% endif %}
+    <div class="top-right-svg">
+      {% render "icons", icon:"square_icon" %}
+    </div>
+    <div class="container">
+      <div class="shpnow-payletter-row flex align-center">
+        <div class="shpnow-payletter-colleft">
+          <div class="shpnow-payletter-colleft-inner">
+            {% if section.settings.title != blank %}
+              <div class="section-title">
+                <h2>{{ section.settings.title }}</h2>
+              </div>
+            {% endif %}
+
+            {% capture shopAndPayIcon %}
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when "shop_pay_icon" %}
+                    <div class="shp-pay-col">
+                      <a href="{{ block.settings.shop_pay_url | default:'#' }}">
+                        {{ block.settings.shop_pay_icon | image_url: width:auto | image_tag }}
+                      </a>
+                    </div>
+                {% endcase %}
+              {% endfor %}
+            {% endcapture %}
+
+            {% if shopAndPayIcon != blank %}
+              <div class="shp-pay-logo-row">
+                <div class="shp-pay-logo-row-flex flex">
+                  {{ shopAndPayIcon }}
+                </div>
+              </div>
+            {% endif %}            
+          </div>
+        </div>
+        {% if section.settings.image != blank %}
+          <div class="shpnow-payletter-colright">
+              <div class="frame-img">
+                {{ section.settings.image | image_url: width:auto | image_tag }}                  
+              </div>
+          </div>
+        {% endif %}
+     </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Shop pay letter section",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Image"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"shop_pay_icon",
+        "name":"Shop pay icon",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"shop_pay_icon",
+            "label":"Shop and pay letter icon"
+          },
+          {
+            "type":"url",
+            "id":"shop_pay_url",
+            "label":"Shop and pay letter icon url"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Shop now pay section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

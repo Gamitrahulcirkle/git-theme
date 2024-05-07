@@ -1,0 +1,478 @@
+{
+  "sections": {
+    "1132facb-f17a-4386-be32-b5738c15f110": {
+      "type": "home-banner-section",
+      "blocks": {
+        "d9969b07-d4c3-42b6-9494-e6e90ea9d8ed": {
+          "type": "banner_img",
+          "settings": {
+            "banner_img": "shopify:\/\/shop_images\/banner-2.jpg",
+            "button_url": "",
+            "button_label": "Pillowcases"
+          }
+        },
+        "88b92d8d-51a4-4e34-bc83-849987861e04": {
+          "type": "banner_img",
+          "settings": {
+            "banner_img": "shopify:\/\/shop_images\/banner-3.jpg",
+            "button_url": "",
+            "button_label": "Bedding Sets"
+          }
+        }
+      },
+      "block_order": [
+        "d9969b07-d4c3-42b6-9494-e6e90ea9d8ed",
+        "88b92d8d-51a4-4e34-bc83-849987861e04"
+      ],
+      "settings": {
+        "banner_img": "shopify:\/\/shop_images\/banner-1.jpg",
+        "banner_title": "UK Most <br> Beautiful Bedding Sets",
+        "banner_sub_title": "experience the luxury and quality that egyptian cotton offer!",
+        "button_url": "",
+        "button_text": "SHOP BEST SELLERS"
+      }
+    },
+    "b1c2c216-639d-466e-b591-cf5f5a007a67": {
+      "type": "our-favorites-section",
+      "blocks": {
+        "ab6ba382-d813-40db-b93e-84734a6c0359": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fav1.jpg",
+            "button_url": "",
+            "button_label": "Motif",
+            "description": "<p>It's not for everyone, it's an ultimate luxury solution with a very high thread count (up to 1000 TC), and up to 10 pieces sets.<\/p>"
+          }
+        },
+        "2695da90-671c-42b5-bd50-8ca8f9288632": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fav2.jpg",
+            "button_url": "",
+            "button_label": "Luxury",
+            "description": "<p>It's not for everyone, it's an ultimate luxury solution with a very high thread count (up to 1000 TC), and up to 10 pieces sets.<\/p>"
+          }
+        },
+        "6920c391-9f69-4e6c-a8c4-12f652a69a28": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fav3.jpg",
+            "button_url": "",
+            "button_label": "Plain Dye",
+            "description": "<p>It's not for everyone, it's an ultimate luxury solution with a very high thread count (up to 1000 TC), and up to 10 pieces sets.<\/p>"
+          }
+        },
+        "691843f0-8d17-4e3f-9657-09d03ec71fd5": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fav4.jpg",
+            "button_url": "",
+            "button_label": "Brushed Cotton",
+            "description": "<p>It's not for everyone, it's an ultimate luxury solution with a very high thread count (up to 1000 TC), and up to 10 pieces sets.<\/p>"
+          }
+        },
+        "fda8465e-32f1-4fb4-a0cc-0406afbc0b38": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fav5.jpg",
+            "button_url": "",
+            "button_label": "Tencel Quilt",
+            "description": "<p>It's not for everyone, it's an ultimate luxury solution with a very high thread count (up to 1000 TC), and up to 10 pieces sets.<\/p>"
+          }
+        },
+        "72ea879f-8280-42db-8a77-2e69f4a2cd58": {
+          "type": "last_slide",
+          "settings": {
+            "slide_text": "See All <br> Collection",
+            "last_slide_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "ab6ba382-d813-40db-b93e-84734a6c0359",
+        "2695da90-671c-42b5-bd50-8ca8f9288632",
+        "6920c391-9f69-4e6c-a8c4-12f652a69a28",
+        "691843f0-8d17-4e3f-9657-09d03ec71fd5",
+        "fda8465e-32f1-4fb4-a0cc-0406afbc0b38",
+        "72ea879f-8280-42db-8a77-2e69f4a2cd58"
+      ],
+      "settings": {
+        "main_title": "Some of <br>Our Favorites"
+      }
+    },
+    "513aff80-3d50-427f-a843-3fe75360b095": {
+      "type": "home-collection-section",
+      "blocks": {
+        "30c50a1f-18c5-4ad4-ac0b-02a4dd60927a": {
+          "type": "tab_content",
+          "settings": {
+            "tab_title": "BED SHEET",
+            "collection": "bed-sheet"
+          }
+        },
+        "69a3c0a9-05e0-42f6-ad97-70969fe36b7f": {
+          "type": "tab_content",
+          "settings": {
+            "tab_title": "PILLOWCASES",
+            "collection": "pillowcases"
+          }
+        },
+        "7ed329ff-d4af-417a-89f7-0ad5356999cb": {
+          "type": "tab_content",
+          "settings": {
+            "tab_title": "DUVET COVER",
+            "collection": "duvet-cover"
+          }
+        }
+      },
+      "block_order": [
+        "30c50a1f-18c5-4ad4-ac0b-02a4dd60927a",
+        "69a3c0a9-05e0-42f6-ad97-70969fe36b7f",
+        "7ed329ff-d4af-417a-89f7-0ad5356999cb"
+      ],
+      "settings": {
+        "button_label": "View all",
+        "button_url": ""
+      }
+    },
+    "ff391df5-136b-4885-8caf-f3bbe921301e": {
+      "type": "holsper-differences",
+      "blocks": {
+        "d4389106-41fc-4e4c-935b-e39d2202c690": {
+          "type": "icon_with_text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-1.svg",
+            "title": "Softest Fabric Guaranteed",
+            "description": "<p>Long-staple 100% Egyptian cotton fabric that feels like a cloud<\/p>"
+          }
+        },
+        "c4428775-ccf3-4171-bca6-ec033947b866": {
+          "type": "icon_with_text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-2.svg",
+            "title": "perfect sleeping temperature",
+            "description": "<p>Temperature regulating and moisture wicking fabric to keep you comfy<\/p>"
+          }
+        },
+        "9c16f8a2-a2d8-4f0b-8ec5-21a58a9acf2a": {
+          "type": "icon_with_text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-3.svg",
+            "title": "Durable & Machine Washable",
+            "description": "<p>Enhanced weave that is guaranteed not to pill even after washing and drying<\/p>"
+          }
+        },
+        "d95981a4-f3f3-4265-bae6-57a1d35f4b2e": {
+          "type": "icon_with_text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-1.svg",
+            "title": "Ethical Factories",
+            "description": "<p>We pride ourselves on the high quality production of all Holsper products<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "d4389106-41fc-4e4c-935b-e39d2202c690",
+        "c4428775-ccf3-4171-bca6-ec033947b866",
+        "9c16f8a2-a2d8-4f0b-8ec5-21a58a9acf2a",
+        "d95981a4-f3f3-4265-bae6-57a1d35f4b2e"
+      ],
+      "settings": {
+        "main_title": "The Holsper Difference",
+        "sub_title": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus  et magnis dis parturient montes, nascetur ridiculus mus.<\/p>"
+      }
+    },
+    "e7a25a72-f52c-4ce3-85e2-ac66321c7d5a": {
+      "type": "shop-now-pay-letter-section",
+      "blocks": {
+        "c75b2c9d-0284-44d2-987e-a78dbedc830c": {
+          "type": "shop_pay_icon",
+          "settings": {
+            "shop_pay_icon": "shopify:\/\/shop_images\/pay1.png",
+            "shop_pay_url": ""
+          }
+        },
+        "df591e48-6329-4aba-8b35-8a3484ab1388": {
+          "type": "shop_pay_icon",
+          "settings": {
+            "shop_pay_icon": "shopify:\/\/shop_images\/pay2.png",
+            "shop_pay_url": ""
+          }
+        },
+        "58bf5f3f-9175-4205-9085-17c3905e2b29": {
+          "type": "shop_pay_icon",
+          "settings": {
+            "shop_pay_icon": "shopify:\/\/shop_images\/pay3.png",
+            "shop_pay_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "c75b2c9d-0284-44d2-987e-a78dbedc830c",
+        "df591e48-6329-4aba-8b35-8a3484ab1388",
+        "58bf5f3f-9175-4205-9085-17c3905e2b29"
+      ],
+      "settings": {
+        "title": "Shop Now Pay Later, With...",
+        "image": "shopify:\/\/shop_images\/shp-pay.png"
+      }
+    },
+    "26ad605c-1abe-4a7e-a80c-6d50708079d8": {
+      "type": "brushed-cotton-section",
+      "settings": {
+        "title": "Brushed Cotton",
+        "collection": "bed-sheet",
+        "button_label": "view all",
+        "button_url": ""
+      }
+    },
+    "4771a274-8338-474c-9802-bb13b7f4fc11": {
+      "type": "best-fabric-collection",
+      "blocks": {
+        "48f616e1-b4cc-4031-9dc1-4595624a54f4": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fab.png",
+            "button_url": "",
+            "button_label": "Egyptian Cotton",
+            "description": ""
+          }
+        },
+        "552915b6-b889-44da-830a-a529384ecb93": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fab2.jpg",
+            "button_url": "",
+            "button_label": "Egyptian Cotton",
+            "description": ""
+          }
+        },
+        "fa1d16dd-68c3-417a-832c-4f2031bbaccf": {
+          "type": "image_with_content",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fab3.jpg",
+            "button_url": "",
+            "button_label": "Egyptian Cotton",
+            "description": ""
+          }
+        },
+        "84f64739-b6e3-449d-9bf1-e35adb513acb": {
+          "type": "last_slide",
+          "settings": {
+            "slide_text": "Sell All",
+            "last_slide_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "48f616e1-b4cc-4031-9dc1-4595624a54f4",
+        "552915b6-b889-44da-830a-a529384ecb93",
+        "fa1d16dd-68c3-417a-832c-4f2031bbaccf",
+        "84f64739-b6e3-449d-9bf1-e35adb513acb"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/fabric-big.jpg",
+        "main_title": "Our Best <br> Fabric Collection",
+        "sub_title": "new arrivals fabric"
+      }
+    },
+    "a8e6d852-6e7c-491b-90a7-b9ad581a1e64": {
+      "type": "our-best-services-section",
+      "blocks": {
+        "46ac4c76-4a15-496d-9528-bd6bbadcc536": {
+          "type": "our_services",
+          "settings": {
+            "service_img": "shopify:\/\/shop_images\/services-icon-4.svg",
+            "service_title": "Free delivery",
+            "service_description": "<p>Fast and free delivery                from 89€<\/p>"
+          }
+        },
+        "cda1589e-fa47-4302-9e1c-761784c8669d": {
+          "type": "our_services",
+          "settings": {
+            "service_img": "shopify:\/\/shop_images\/services-icon-2.svg",
+            "service_title": "Secure Payment",
+            "service_description": "<p>100% secure online payment by credit card or Paypal<\/p>"
+          }
+        },
+        "c36518af-e3ca-4752-ace0-9740c2a9f1c9": {
+          "type": "our_services",
+          "settings": {
+            "service_img": "shopify:\/\/shop_images\/services-icon-3.svg",
+            "service_title": "Free Returns",
+            "service_description": "<p>60 days to return your order to      us for free<\/p>"
+          }
+        },
+        "7f0553e5-c455-4368-82f0-5c6183e04df8": {
+          "type": "our_services",
+          "settings": {
+            "service_img": "shopify:\/\/shop_images\/services-icon-4.svg",
+            "service_title": "Contact us",
+            "service_description": "<p>The team can be reached by chat or by e-mail at info@holsper.com<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "46ac4c76-4a15-496d-9528-bd6bbadcc536",
+        "cda1589e-fa47-4302-9e1c-761784c8669d",
+        "c36518af-e3ca-4752-ace0-9740c2a9f1c9",
+        "7f0553e5-c455-4368-82f0-5c6183e04df8"
+      ],
+      "settings": {
+        "title": "Our Best Services",
+        "section_bg_img": "shopify:\/\/shop_images\/our-best-services.jpg"
+      }
+    },
+    "4e8df908-17c7-4891-a60f-ae10a4c6c50e": {
+      "type": "reviews-section",
+      "blocks": {
+        "9d5e8597-b858-4bf3-859f-456cf8c4f6f3": {
+          "type": "reviews_section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/rev1.jpg",
+            "review_img": "shopify:\/\/shop_images\/stars.png",
+            "review_title": "Veryan L.",
+            "review_comment": "<p>“This is set I gave to my son family! I have two sets! Saving up to buy for other son                     and daughter!!”<\/p>",
+            "text": "<span>Item type :<\/span> King \/ Fitted \/ 4 Standard"
+          }
+        },
+        "afb8a5e2-273d-4877-8a7d-d829c44e0bec": {
+          "type": "reviews_section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/rev2.jpg",
+            "review_img": "shopify:\/\/shop_images\/stars.png",
+            "review_title": "Sian G.",
+            "review_comment": "<p>“Was hesitant at first but I’m glad I bought this beautiful set. It’s stunning and                                    feels luxurious. Will definitely                                    invest in another design when I can...”<\/p>",
+            "text": "<span>Item type :<\/span> King \/ Fitted \/ 4 Standard"
+          }
+        },
+        "4a4389e2-3f4e-42da-b1e4-35c7b2f506d4": {
+          "type": "reviews_section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/rev1.jpg",
+            "review_img": "shopify:\/\/shop_images\/stars.png",
+            "review_title": "Veryan L.",
+            "review_comment": "<p>“This is set I gave to my son family! I have two sets! Saving up to buy for other son                                    and daughter!!”<\/p>",
+            "text": "<span>Item type :<\/span> King \/ Fitted \/ 4 Standard"
+          }
+        }
+      },
+      "block_order": [
+        "9d5e8597-b858-4bf3-859f-456cf8c4f6f3",
+        "afb8a5e2-273d-4877-8a7d-d829c44e0bec",
+        "4a4389e2-3f4e-42da-b1e4-35c7b2f506d4"
+      ],
+      "settings": {
+        "title": "What Our Customers Say",
+        "review_description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum  sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.<\/p>",
+        "button_label": "view all",
+        "button_url": ""
+      }
+    },
+    "9a6b13f2-d95d-484d-98c0-94f94ebbd9e6": {
+      "type": "subscribe-newsletter-section",
+      "settings": {
+        "title": "Subscribe To Newsletter",
+        "description": "<p>Enter your email to receive £60 off your first bedding set !<\/p>",
+        "klaviyo_form_id": "VmSeNz",
+        "form_type": "mail_chimp_form"
+      }
+    },
+    "videos_znXi9J": {
+      "type": "videos",
+      "blocks": {
+        "manage_video_KbRGRn": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro3_7592cf89-f86f-4446-9033-3da8f721d5a6.jpg",
+            "video": "shopify:\/\/files\/videos\/2574325236.mp4",
+            "video_url": "https:\/\/vimeo.com\/336812686"
+          }
+        },
+        "manage_video_Pm3gPR": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro6_b6cda1fa-fa16-4ec5-8269-69589db0c2a1.jpg",
+            "video_url": "https:\/\/youtu.be\/tgbNymZ7vqY"
+          }
+        },
+        "manage_video_ULUtLF": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro1_ecb9476a-eeeb-492e-a983-9ce8beb539d4.jpg",
+            "video_url": "https:\/\/vimeo.com\/336812686"
+          }
+        }
+      },
+      "block_order": [
+        "manage_video_KbRGRn",
+        "manage_video_Pm3gPR",
+        "manage_video_ULUtLF"
+      ],
+      "settings": {
+        "title": "Title"
+      }
+    },
+    "videos_pPVFte": {
+      "type": "videos",
+      "blocks": {
+        "manage_video_hcdFHY": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro1_b50204a9-fd6a-473f-8845-9caa63b31f38.jpg",
+            "video": "shopify:\/\/files\/videos\/2574325236.mp4",
+            "video_url": ""
+          }
+        },
+        "manage_video_3XAtNU": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro3_7592cf89-f86f-4446-9033-3da8f721d5a6.jpg",
+            "video_url": "https:\/\/vimeo.com\/29248802"
+          }
+        },
+        "manage_video_khKNVC": {
+          "type": "manage_video",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pro2_10f0f817-c873-4c81-b868-b3be3d9cd88e.jpg",
+            "video_url": "https:\/\/vimeo.com\/49155275"
+          }
+        }
+      },
+      "block_order": [
+        "manage_video_hcdFHY",
+        "manage_video_3XAtNU",
+        "manage_video_khKNVC"
+      ],
+      "settings": {
+        "title": ""
+      }
+    },
+    "collection_list_iCeGge": {
+      "type": "collection-list",
+      "settings": {
+        "collection_list": [
+
+        ],
+        "article": "news\/the-top-10-bed-sheet-tips-you-need-to-know",
+        "blog": "news",
+        "logo_aligment": "left"
+      }
+    }
+  },
+  "order": [
+    "1132facb-f17a-4386-be32-b5738c15f110",
+    "b1c2c216-639d-466e-b591-cf5f5a007a67",
+    "513aff80-3d50-427f-a843-3fe75360b095",
+    "ff391df5-136b-4885-8caf-f3bbe921301e",
+    "e7a25a72-f52c-4ce3-85e2-ac66321c7d5a",
+    "26ad605c-1abe-4a7e-a80c-6d50708079d8",
+    "4771a274-8338-474c-9802-bb13b7f4fc11",
+    "a8e6d852-6e7c-491b-90a7-b9ad581a1e64",
+    "4e8df908-17c7-4891-a60f-ae10a4c6c50e",
+    "9a6b13f2-d95d-484d-98c0-94f94ebbd9e6",
+    "videos_znXi9J",
+    "videos_pPVFte",
+    "collection_list_iCeGge"
+  ]
+}

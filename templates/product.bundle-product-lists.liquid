@@ -1,0 +1,29 @@
+{% layout none %}
+<div class="product-details">
+  <div class="pro-title">
+    <a href="{{ product.url }}">{{ product.handle }}</a>
+  </div>
+  <div class="product-img">
+     {{ product.featured_image | image_url: width:product.featured_image.width |  image_tag }}
+  </div>
+  
+  {% if product.options_with_values.size > 1 %}
+    <div class="product_swatch_detial">     
+      {% for option in product.options_with_values %}
+        <p> <strong>{{ option.name }} : </strong> {{ option.selected_value }} </p>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  <div class="price flex align-center">    
+    {% if product.compare_at_price > product.price %}
+      <del> {{ product.compare_at_price | money }}</del>
+    {% endif %}
+    <ins>{{ product.price | money }}</ins>
+  </div>
+  
+  <div class="select_box">
+    <input type="checkbox" checked disabled class="select_bundle_product" name="bundle_product" id="select_{{ product.selected_or_first_available_variant.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+    <label for="select_{{ product.selected_or_first_available_variant.id }}">{{ 'bundleProduct.labels.checkbox_label' | t }}</label>
+  </div>
+</div>

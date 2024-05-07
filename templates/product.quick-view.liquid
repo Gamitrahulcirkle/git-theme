@@ -1,0 +1,48 @@
+{% layout none %}
+{% comment %}{% render "quick-view" %} {% endcomment %}
+<a href="javascript:void(0);" class="closequickview">
+  {% render "new-icons", icon:"icons8-close" %}
+</a> 
+<div class="quick-view-container">
+  <div class="quick-content">
+    <div class="container">
+      <div class="pdp-block">
+        <div class="pdp-images">
+           {% comment %}
+          <div class="pdp-thumb quick-view-img">
+            {%- for media in product.media -%}
+              {% render "product-thumbnail", media:media, image_type:"master", forindex:forloop.index0 %}
+            {%- endfor -%}
+          </div>
+           {% endcomment %}
+         
+          <div class="pdp-main-img quick-view-thumb mobile_slider">
+            {%- for media in product.media -%}
+              {% render "product-thumbnail", media:media, media_type:"thumbnail", forindex:forloop.index0 %}
+            {%- endfor -%}
+          </div>
+         
+          
+        </div>
+        <div class="pdp-content">
+          <div class="pdp-name">
+            <a href="{{ product.url }}">{{ product.title | escape }}</a>
+          </div>
+          <div class="pdp-price price flex align-center js-main-product-price">
+            {% if product.compare_at_price and product.compare_at_price > product.price %}
+              <del>{{ product.compare_at_price | money }}</del>
+            {% endif %}
+            <ins>{{ product.price |  money }}</ins>
+          </div>
+          <div class="pdp-description">
+            {{ product.description | truncatewords:20 }}
+          </div>
+          <div class="pdp-color-box">
+            {% render "variant-swatch", product:product %}
+          </div>
+          {% render "buy-buttons",block:block %}      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

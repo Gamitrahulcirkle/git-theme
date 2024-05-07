@@ -1,0 +1,34 @@
+{% if section.settings.enable_banner %}
+  <section class="common-banner-section">
+  {{ section.settings.image | image_url: width:auto | image_tag }}
+  </section>
+{% endif %}
+{% schema %}
+  {
+    "name": "Banner section",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable_banner",
+        "label":"Show banner?",
+        "default":true
+      },
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner image"
+      }
+    ],
+    "presets":[
+      {
+        "name":"Banner section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

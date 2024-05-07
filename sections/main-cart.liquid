@@ -1,0 +1,220 @@
+{% if section.settings.cart_bnr_img != blank %}
+  <section class="common-banner-section">
+    {{ section.settings.cart_bnr_img | image_url:width:auto | image_tag }}
+  </section>
+{% endif %}
+<div class="cart-page-wrapper" data-section="main-cart">
+  <div class="top-left-svg">
+    {% render "new-icons", icon:"cart_patter_icon" %}
+  </div>
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    <span class="cart-count-bubble" style="display:none;"><span>{{ cart.item_count }}</span></span>
+    <div id="crt" class="mini-cart-has-item">
+      <div class="main-cart-body mini-cart-body">
+        <form
+          action="{{ routes.cart_url }}"
+          id="CartDrawer-Form"
+          class="cart__contents cart-drawer__form"
+          method="post"
+          >
+          {%- if cart == empty -%}
+            <p class="emptyCart text-center">{{ 'cart.general.empty' | t }}</p>
+            <a href="/collections/all" class="link-btn">
+              {{ 'cart.cartDrawer.contine_shop' | t }}
+              {% render "icons",icon:"right_side_arrow" %}
+            </a> 
+          {%- endif -%} 
+          
+          {%- if cart != empty -%}
+            {% for item in cart.items %}
+              <div class="mini-cart-item">
+                <div class="mini-cart-image">
+                  <a href="{{ item.url }}" title="SPACE BAG">
+                    {{ item.image | image_url:width:auto | image_tag }}                    
+                  </a>
+                </div>
+                
+                <div class="mini-cart-details flex align-center justify-between">
+                  <div class="min-cart-detail-left">
+                    <p class="mini-cart-title"><a href="{{ item.url }}">{{ item.title }}</a></p>
+                    <div class="price flex align-center">
+                      {% if item.variant.compare_at_price %}
+                        <del>{{ item.variant.compare_at_price | money }}</del>
+                      {% endif %}
+                      <ins>{{ item.final_price | money }}</ins>
+                    </div>
+                    
+                    {%- if item.product.has_only_default_variant == false -%}
+                      <div class="cart-variable">
+                        {%- for option in item.options_with_values -%}
+                          <p><strong>{{ option.name }}:</strong> {{ option.value }} {% unless forloop.last %}, {% endunless %} </p>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <div class="pvarprice flex align-center justify-between">
+                    <div class="qty-spinner">
+                      <button type="button" class="js-qty-update quantity-decrement " 
+                        data-variant_id="{{ item.variant_id }}"
+                        data-item_key ="{{ item.key }}" 
+                        data-qty_status="minus"
+                        >
+                        {% render "icons",icon:"minus_icon" %}
+                      </button>
+                          <input type="text" class="quantity"
+                            data-cke-saved-name="quantity"
+                            name="quantity"
+                            value="{{ item.quantity }}"
+                            min="1"
+                            max="100"
+                            disabled
+                            >
+                      <button type="button" class="js-quantity-update quantity-increment" 
+                        data-variant_id="{{ item.variant_id }}"
+                        data-qty_status="minus"
+                        data-item_key ="{{ item.key }}" 
+                        >
+                        {% render "icons",icon:"plus_icon" %}
+                      </button>
+                    </div>
+
+                    {% liquid
+                      assign itemProperty =''
+                      assign PropertyClass =''
+                    %}
+              
+                    {% assign itemProperty ='' %}
+                    {% if item.properties["_Bundle_pack"] %}
+                      {% assign itemProperty = "Bundle_pack" %}
+                      {% assign PropertyClass = "bdl_" | append:item.properties["_Bundle_pack"]  %}
+                    {% endif %}
+              
+                    <a class="{{ itemProperty }} {{ PropertyClass }} remove_item" 
+                      title="Remove item" href="#" 
+                      data-variant_id="{{ item.variant_id }}"
+                      data-item_key ="{{ item.key }}" 
+                    > 
+                      {% render "icons",icon:"remove_icon" %}
+                    </a>
+                  </div>
+                </div>
+              </div>           
+           {% endfor %}
+         {% endif %}       
+       </form>
+    </div>
+      
+    <div class="main-cart-footer mini-cart-footer flex">
+      {%- if cart != empty -%}
+        <div class="cart-footer-left">
+          <a href="{{ routes.all_products_collection_url }}" class="btn continue-shop-btn">
+            {{ 'cart.cartDrawer.contine_shop' | t }}
+            {% render "icons",icon:"right_side_arrow" %}
+          </a>
+        </div>
+        <div class="cart-footer-right">
+          <div class="mini-cart-footer-total-row flex align-center justify-between">
+            <div class="mini-total-lbl">
+              {{ 'cart.general.subtotal' | t }} :
+            </div>
+            <div class="mini-total-price">
+              {{ cart.items_subtotal_price | money }}
+            </div>
+          </div>
+        
+          {% if cart.total_discount > 0 %}
+            <div class="u-save flex justify-end">
+              {{ 'cart.general.savings' | t }}: {{ cart.total_discount | money }}
+            </div>
+          {% endif %} 
+          <p>{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>
+          <button
+            type="submit"
+            id="CartDrawer-Checkout"
+            class="btn checkout-btn"
+            name="checkout"
+            form="CartDrawer-Form"
+            {% if cart == empty %}
+              disabled
+            {% endif %}
+          >
+             {{ 'cart.general.checkout' | t }}
+            {% render "icons",icon:"right_side_arrow" %}
+          </button> 
+
+          {% capture paymentIcons %}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when "payment_icon" %}
+                  {% if block.settings.payment_img != blank %}
+                    <li><a href="{{ block.settings.img_url | default:"#" }}">{{ block.settings.payment_img | image_url:width:auto | image_tag }} </a></li>
+                  {% endif %}
+              {% endcase %}
+            {% endfor %}
+          {% endcapture %}
+        
+          {% if paymentIcons != blank %}
+            <ul class="footer-payment flex align-center justify-end">
+              {{ paymentIcons }}
+            </ul>
+          {% endif %}            
+        </div>
+     {% endif %}
+    </div>
+  </div>
+ </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Main cart",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Cart banner setting"
+      },
+      {
+        "type":"image_picker",
+        "id":"cart_bnr_img",
+        "label":"Cart banner image"
+      },
+      {
+        "type":"header",
+        "content":"Mian cart"
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Heading",
+        "default":"Your Shopping Cart"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"payment_icon",
+        "name":"Payment icon",
+        "settings":[
+          {
+            "type":"url",
+            "id":"img_url",
+            "label":"Image URL"
+          },
+          {
+            "type":"image_picker",
+            "id":"payment_img",
+            "label":"Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

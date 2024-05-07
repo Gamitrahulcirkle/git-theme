@@ -1,0 +1,39 @@
+<div class="pagination-wrapper">
+  <ul class="flex align-center justify-end pagination">
+  {%- if paginate.previous -%}
+    <li class="prev-btn">
+      <a href="{{ paginate.previous.url }}{{ anchor }}">
+        {% render "icons-lists", icon:"paginate_right_icon" %}
+      </a>
+    </li>
+  {%- endif -%}
+  
+  {%- for part in paginate.parts -%}
+    {% if forloop.index0 < 9 %}
+      {% assign zero_c = 0 %}
+    {% else %}
+      {% assign zero_c = "" %}
+    {% endif %} 
+    
+    <li class="{% if part.title == paginate.current_page %} active-page {% endif %}">
+      {%- if part.is_link -%}
+        <a href="{{ part.url }}"> {{ zero_c }}{{ part.title }}</a>
+      {%- else -%}
+        {% if part.title == paginate.current_page %}
+          <a href="javascript:void(0);">{{ zero_c }} {{ part.title }}</a>
+        {% else %}
+          <span>{{ zero_c }} {{ part.title }}</span>
+        {% endif %}
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+  
+  {%- if paginate.next -%}
+    <li class="next-btn">
+      <a href="{{ paginate.next.url }}{{ anchor }}" >
+        {% render "icons-lists", icon:"paginate_left_icon" %}
+      </a>
+    </li>
+  {%- endif -%}
+ </ul>
+</div>

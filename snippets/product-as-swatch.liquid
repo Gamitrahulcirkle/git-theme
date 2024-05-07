@@ -1,0 +1,105 @@
+
+{% if swatch != blnak %}
+  {% assign found_option = false %}
+  {% assign is_color = false %}
+  {% assign option_index = 0 %}
+
+  {% for option in product.options %}    
+    {% if option == swatch %}
+      {% assign found_option = true %}
+      {% assign option_index = forloop.index0 %}
+      {% assign downcased_option = swatch | downcase %}
+      
+      {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign is_color = true %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if found_option %}
+    <div class="color-box-label position-{{ option_index }}">
+      <label>{{ swatch }}</label>
+      {% if swatch =="Size" and template.name == "product" %}
+        <a href="javascrpt:void(0);">{{ 'products.product.size_option' | t }}</a>
+      {% endif %}
+    </div>
+    {% assign values = '' %}
+    
+    {% if is_color and colorAsProduct == false %}
+      <ul class="color-chekbox js-product-form__input position-{{ option_index }}">
+    {% else %}
+       <div class="box-radio js-product-form__input swatche position-{{ option_index }}" data-option-index="{{ option_index }}">
+    {% endif %}  
+         
+      {% for variant in product.variants %}     
+        {% assign value = variant.options[option_index] %}
+          {% unless values contains value %}
+            {% assign values = values | join: ',' %}            
+            {% assign values = values | append: ',' | append: value %}            
+            {% assign values = values | split: ',' %}            
+         
+            {% if is_color and colorAsProduct == false %}                            
+              
+              <li class="swatche" data-option-index="{{ option_index }}">
+                <input                  
+                  type="radio"
+                  {% if tabinx != blank and stepinx != blank %}
+                    id="swatch-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}-{{ value | handle }}"
+                    name="option-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}"
+                  {% else %}
+                    id="swatch-{{ option_index }}-{{ value | handle }}" 
+                    name="option-{{ option_index }}"
+                  {% endif %}  
+                  
+                  value="{{ value | escape }}"
+                  {% if forloop.first %} checked{% endif %} 
+                  {% if variant.available %}
+                    data-variant-id ="{{ variant.id }}"
+                  {% endif %} 
+                />
+                <label 
+                  {% if tabinx != blank and stepinx != blank %}
+                    for="swatch-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}-{{ value | handle }}"
+                  {% else %}
+                    for="swatch-{{ option_index }}-{{ value | handle }}"
+                  {% endif %}
+                  style="background:{{ value }};"
+                  ></label>
+              </li>                    
+            {% else %}
+              <input 
+                type="radio"
+                data-variant-id ="{{ variant.id }}"
+                  {% if tabinx != blank and stepinx != blank %}
+                    id="swatch-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}-{{ value | handle }}"
+                    name="option-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}"
+                  {% else %}
+                    id="swatch-{{ option_index }}-{{ value | handle }}"
+                    name="option-{{ option_index }}"
+                  {% endif %}  
+                value="{{ value | escape }}"
+                {% if forloop.first %} checked{% endif %} 
+                {% if variant.available %}
+                  data-variant-id ="{{ variant.id }}"
+                {% endif %}
+              />
+               <label 
+                {% if tabinx != blank and stepinx != blank %}
+                  for="swatch-{{ option_index }}-{{ productid }}-{{ tabinx }}-{{ stepinx }}-{{ value | handle }}"
+                {% else %}
+                  for="swatch-{{ option_index }}-{{ value | handle }}"
+                {% endif %}                 
+                >
+                {{ value }}
+              </label>
+            {% endif %}  
+          {% endunless %}
+      {% endfor %}    
+    
+   {% if is_color %}
+     </ul>
+   {% else %}
+     </div>
+   {% endif %} 
+  {% endif %}
+{% endif %}

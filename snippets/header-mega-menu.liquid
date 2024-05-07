@@ -1,0 +1,105 @@
+<div class="holsper-menubar">
+  <div class="container ">
+   <ul class="nav-list relative flex align-center justify-center desk-only" role="list">
+     {% for link in section.settings.main_menu.links %}
+       {% capture megaMenu %} 
+         {% for block in section.blocks %}
+           {%- case block.type -%}
+             {%- when 'menu' -%}
+               {% assign link_title = link.title | downcase %}
+               {% assign mega_menu_title = block.settings.menu_title | downcase %} 
+         
+               {% if mega_menu_title == link_title %}               
+                 {% if block.settings.enable_submenu %}
+                   <div class="mega-menu ">
+                     <div class="mega-menu-inner flex align-center">
+                       {% for i in (0..8) %}
+                         {% assign sub_menu_txt_id = "sub_menu_text" | append:i %}
+                         {% assign sub_menu_url_id = "sub_menu_url" | append:i %}
+                         {% assign sub_menu_img = "sub_menu_img" | append:i %}
+                         {% assign sub_menu_url = "sub_menu_url" | append:i %}
+                         {% assign sub_menu_btn_label = "sub_menu_url_label" | append:i %}
+                         {% assign sub_menu = "sub_menu_text" | append:i %}
+                         
+                         {% if block.settings[sub_menu_url_id] !=blank and  block.settings[sub_menu_txt_id] !=blank %}
+                           <div class="mega-col">
+                             <div class="mega-col-inner">
+                               {% if block.settings[sub_menu_img] !=blank %}
+                                 <div class="mega-img">
+                                   <a href="{{ block.settings[sub_menu_url] }}">                                 
+                                     {{ block.settings[sub_menu_img] | image_url: width: auto | image_tag }}                                      
+                                    </a>
+                                  </div>
+                                {% endif %}
+                                <div class="mega-content">
+                                  <h5><a href="{{ block.settings[sub_menu_url] }}">{{ block.settings[sub_menu] }}</a></h5>
+                                  {% if block.settings[sub_menu_btn_label] != blank %}
+                                    <a href="{{ block.settings[sub_menu_url] }}" class="link-btn">
+                                    {{ block.settings[sub_menu_btn_label] }}
+                                    {% render "icons", icon:"right_side_arrow" %}                                      
+                                    </a>
+                                  {% endif %}
+                                </div>
+                              </div>
+                            </div>                                 
+                          {% endif %}                         
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+               {% endif %}  
+              {%- endcase -%}
+            {% endfor %}
+       {% endcapture %}
+       
+        {% if megaMenu != blank %} 
+          <li class="menu-has-item menu-item">
+            <a href="{{ link.url }}"> {{ link.title }} </a>
+            {{ megaMenu }}
+          </li>
+        {% else %}
+          <li class="menu-item"><a href="{{ link.url }}"> {{ link.title }} </a></li>
+        {% endif %}
+       {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="mobile-nav">
+  <div class="close-menu">
+    {% render "icons",icon:"close_icon" %}
+  </div>
+  <div class="mobile-inner">
+    <ul class="accordion">
+      {% for link in section.settings.main_menu.links %}
+        <li class="mobile-list"><a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when 'menu' -%}
+              {% assign link_title = link.title | downcase %}
+              {% assign mega_menu_title = block.settings.menu_title | downcase %} 
+
+              {% if mega_menu_title == link_title %}
+                {% if block.settings.enable_submenu %}
+                  <div class="accordion-content open" id="accordion-1" style="display: block;">
+                    <ul>
+                      {% for i in (0..8) %}
+                        {% assign sub_menu_txt_id = "sub_menu_text" | append:i %}
+                        {% assign sub_menu_url_id = "sub_menu_url" | append:i %}
+                        {% assign sub_menu_img = "sub_menu_img" | append:i %}
+                        
+                        {% if block.settings[sub_menu_url_id] !=blank and  block.settings[sub_menu_txt_id] !=blank %}
+                          <li><a href="{{ block.settings[sub_menu_url_id] }}">{{ block.settings[sub_menu_txt_id] }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+               {% endif %} 
+            {%- endcase -%}
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

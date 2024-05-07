@@ -1,0 +1,51 @@
+{%- liquid 
+   assign currentVariant = card_product.first_available_variant
+-%}
+
+<div class="{% if class %} {{ class }} {% else %} home-collection-itm {% endif %} product-card">
+    <div class="product-card-inner">
+        <div class="product-card-img">
+          {% if card_product.featured_media %}
+            <a href="{{ card_product.url }}" class="pro-img">
+                {{ card_product | image_url:width:auto | image_tag }}
+            </a>
+          {% endif %}
+            <div class="hover-btn {{ card_btn_class }}">                            
+              {% if currentVariant.available %}
+                <a href="javascript:void(0);" class="js-quickview quickview-btn btn" data-product_handle="{{ card_product.handle }}">
+                    quick view
+                  {% render "icons", icon:"quick_view" %}                    
+                </a> 
+                <a href="javascript:void(0);" class="js-add-to-cart add-to-cart-btn btn" data-product_handle="{{ card_product.handle }}" data-product_variantId={{ currentVariant.id }}>
+                    Add To Cart
+                    {% render "icons", icon:"add_cart" %}
+                </a>
+              {% else %}
+                <a href="javascript:void(0);" class="add-to-cart-btn btn" style="pointer-events: none; ">Sold Out</a>
+              {% endif %}  
+              
+              <!-- Swym Wishlist Plus EPI Button-->
+              <button data-with-epi="true" 
+                class="swym-button swym-add-to-wishlist-view-product product_{{card_product.id}}" 
+                data-swaction="addToWishlist" 
+                data-product-id="{{card_product.id | json}}" 
+                data-variant-id="{{card_product.variants[0].id}}" 
+                data-product-url="{{ shop.url }}{{ card_product.url }}"
+              >  ADD TO WISHLIST              
+              </button>
+              <!-- Swym Wishlist Plus EPI Button-->
+            </div>
+        </div>
+        <div class="product-card-content">
+            <div class="pro-title">
+                <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+            </div>
+            <div class="price flex align-center">
+                {% if card_product.compare_at_price %}
+                  <del>{{ card_product.compare_at_price | money }}</del> 
+                {% endif %} 
+                <ins>{{ card_product.price | money }}</ins>
+            </div>
+        </div>
+    </div>
+</div>

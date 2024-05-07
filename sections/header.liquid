@@ -1,0 +1,383 @@
+<header class="holsper-header header-style-one">
+  <div class="holsper-announcebar">
+    <div class="container">
+      <div class="flex align-center justify-between">
+        {% if section.settings.announce_label %}
+          <div class="announcebar-left">
+            <p>{{ section.settings.announce_label }}</p>
+          </div>
+        {% endif %}
+        <div class="announcebar-right desk-only">
+            <ul class="announce-links flex align-center justify-end">
+              {% if section.settings.announcebar_rgt_text1 %}
+                <li>
+                    <a href="{{ section.settings.announcebar_rgt_url1 }}">
+                        {% render "icons", icon:"sale" %}
+                        <span>{{ section.settings.announcebar_rgt_text1 }}</span>
+                    </a>
+                </li>
+               {% endif %}
+               {% if section.settings.announcebar_rgt_text2 %}
+                <li>
+                    <a href="{{ section.settings.announcebar_rgt_url2 }}">
+                        {% render "icons", icon:"review" %}
+                        <span>{{ section.settings.announcebar_rgt_text2 }}</span>
+                    </a>
+                </li>
+              {% endif %}
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
+  <div class="holsper-logobar">  
+    <div class="container">
+      <div class="holsper-logobar-row flex align-center">
+        <div class="holsper-header-left">
+          <div class="holsper-logo">
+            <a href="{{ routes.root_url }}">
+              {% if section.settings.logo_img != blank %}
+                {{ section.settings.logo_img | image_url: width: auto | image_tag }}
+              {% else %}
+                <h2>{{ shop.name }}</h2>
+              {% endif %}
+            </a>
+          </div>
+        </div> 
+        
+        <div class="holsper-header-right flex align-center justify-end">
+          <div class="mobile-toggle mobile-only">
+            {% render "icons", icon:"hamburger" %}
+          </div>
+          
+          <ul class="social-list flex align-center" role="list">
+            {% if section.settings.seach_box_visible %}
+              <li class="seach-btn desk-only">                  
+                  <form class="header-search-form search-form" action="{{ routes.search_url }}">
+                      <div class="search-input">
+                          <input type="text"
+                            class="js-search"
+                            placeholder="Search..."
+                            name="q"
+                            value="{{ search.terms | escape }}"
+                          >
+                          {% if section.settings.search_type != "all" %}
+                            <input type="hidden" name="type" value="{{ section.settings.search_type }}">
+                          {% endif %} 
+                        
+                          <button class="search_result_close">
+                            X 
+                          </button>                          
+                          <button class="search-btn" type="submit">
+                            {% render "icons", icon:"search_icon" %}                                            
+                          </button>
+                      </div>
+                      <div class="prediactive_search">
+                        
+                      </div>
+                  </form>
+              </li>
+            {% endif %} 
+            {%- if shop.customer_accounts_enabled -%}
+              <li class="login-link">
+                <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+                  {% render "icons", icon:"avtar_icon" %} 
+                </a>
+              </li>
+            {%- endif -%} 
+                        
+              <li>
+                {% if template == 'cart' %}
+                  <a href="{{ routes.cart_url }}">
+                     {% render "icons", icon:"bag_icon" %} 
+                      <div class="count" id="cart-count-bubble"><span>{{ cart.item_count }}</span></div>
+                  </a>
+                {% else %}
+                  <a href="javascript:void(0);" class="cart-btn">
+                     {% render "icons", icon:"bag_icon" %} 
+                      <div class="count" id="cart-count-bubble"><span>{{ cart.item_count }}</span></div>
+                  </a>
+                {% endif %}                  
+              </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  {% comment %} Megamenu {% endcomment %}
+  {% if section.settings.main_menu.links != blank %}
+    {% render "header-mega-menu" %} 
+  {% endif %}  
+  
+</header>
+    
+{% schema %}
+  {
+    "name": "Main Header",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Announcebar left"
+      },
+      {
+        "type":"text",
+        "id":"announce_label",
+        "label":"Announce label"
+      },
+      {
+        "type":"header",
+        "content":"Announcebar right"
+      },
+      {
+        "type":"url",
+        "id":"announcebar_rgt_url1",
+        "label":"Announcebar url"
+      },     
+      {
+        "type":"text",
+        "id":"announcebar_rgt_text1",
+        "label":"Label",
+        "default":"sale"
+      },
+      {
+        "type":"url",
+        "id":"announcebar_rgt_url2",
+        "label":"Announcebar url"
+      },     
+      {
+        "type":"text",
+        "id":"announcebar_rgt_text2",
+        "label":"Label",
+        "default":"Reviews"
+      },
+      {
+        "type":"header",
+        "content":"Top Header"
+      },
+      {
+        "type":"image_picker",
+        "id":"logo_img",
+        "label":"Logo"
+      },
+      {
+        "type":"checkbox",
+        "id":"seach_box_visible",
+        "label":"Can show search box?",
+        "default":true
+      },
+      {
+        "type": "select",
+        "id": "search_type",
+        "label": "Seach types",
+        "options": [
+          {
+            "value": "all",
+            "label": "All"
+          },
+          {
+            "value": "product",
+            "label": "Products"
+          },
+          {
+            "value": "article",
+            "label": "Articles"
+          },
+          {
+            "value": "page",
+            "label": "Pages"
+          }
+        ],
+        "default": "all"
+      },
+      {
+        "type":"header",
+        "content":"Header menu"
+      },
+      {
+        "type":"link_list",
+        "id":"main_menu",
+        "label":"Main menu"        
+      }
+    ],
+    "blocks": [
+      {
+        "name":"Menu",
+        "type":"menu",
+        "settings":[
+          {
+            "type":"header",
+            "content":"Main menu setting"
+          },
+          {
+            "type":"text",
+            "id":"menu_title",
+            "label":"Menu Text"
+          },
+          {
+            "type":"url",
+            "id":"menu_url",
+            "label":"Menu URL"
+          },
+          {
+            "type":"header",
+            "content":"Sum menu setting"
+          },
+          {
+            "type":"checkbox",
+            "id":"enable_submenu",
+            "label":"Enable submenu?",
+            "default":true
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text0",
+            "label":"Sub menu"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url0",
+            "label":"Sub menu URL"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label0",
+            "label":"Button label"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img0",
+            "label":"Sub menu Image"
+          },          
+          {
+            "type":"text",
+            "id":"sub_menu_text1",
+            "label":"Sub menu 1"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url1",
+            "label":"Sub menu URL 1"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label1",
+            "label":"Button label 1"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img1",
+            "label":"Sub menu Image 1"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text2",
+            "label":"Sub menu 2"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url2",
+            "label":"Sub menu URL 2"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label2",
+            "label":"Button label 2"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img2",
+            "label":"Sub menu Image 2"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text3",
+            "label":"Sub menu 3"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url3",
+            "label":"Sub menu URL 3"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label3",
+            "label":"Button label 3"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img3",
+            "label":"Sub menu Image 3"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text4",
+            "label":"Sub menu 4"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url4",
+            "label":"Sub menu URL 4"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label4",
+            "label":"Button label 4"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img4",
+            "label":"Sub menu Image 5"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text5",
+            "label":"Sub menu 5"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url5",
+            "label":"Sub menu URL 5"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label5",
+            "label":"Button label 5"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img5",
+            "label":"Sub menu Image 5"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_text6",
+            "label":"Sub menu 6"
+          },
+          {
+            "type":"url",
+            "id":"sub_menu_url6",
+            "label":"Sub menu URL 6"
+          },
+          {
+            "type":"text",
+            "id":"sub_menu_url_label6",
+            "label":"Button label 6"
+          },
+          {
+            "type":"image_picker",
+            "id":"sub_menu_img6",
+            "label":"Sub menu Image 6"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,50 @@
+{% capture productBundle %}
+  {% for pdt in product.metafields.custom.select_product_bundle.value %}
+    <div class="bundal-item">
+      <a class="bundal-img">
+        <img src="{{ pdt.featured_image | product_img_url: 'large' }}" alt="{{ pdt.title | escape }}" width="{{ pdt.featured_image.width }}" height="{{ pdt.featured_image.height }}">
+      </a>
+      <div class="bundal-dec">
+          <input class="bundal-cheack" 
+            type="checkbox" 
+            data-cke-saved-name="check"
+            name="check" 
+            value="{{ pdt.selected_or_first_available_variant.id }}"
+          >
+          <div class="b-name">
+              {{ pdt.title }}
+          </div>
+          <div class="pdp-price price flex align-center">
+            {% if pdt.compare_at_price and pdt.compare_at_price > pdt.price %} 
+              <del>{{ pdt.compare_at_price | money }}</del>
+             {% endif %} 
+            <ins>{{ pdt.price | money }}</ins>
+          </div>
+          {% unless pdt.has_only_default_variant %}
+            <select class="bundle_variant">
+              <option value="">Select variant</option>
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+          {% endunless %}                
+      </div>
+    </div>
+  {% endfor %} 
+{% endcapture %}
+
+{% if productBundle != blank %}
+  <div class="bundal-product-box">
+    <label class="bundal-label">{{ block.settings.heading }}</label>
+    <div class="b-save-content">
+      {{ block.settings.subheading }}
+    </div>
+    <div class="custom-checkbox">
+      <input type="checkbox" id="html">
+      <label for="html">{{ 'products.product.bundle_product_title' | t }}</label>
+    </div>
+    <div class="bundal-product-wrap">
+      {{ productBundle }}          
+    </div>
+  </div>
+{% endif %}  
