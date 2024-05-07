@@ -129,7 +129,12 @@
           .trigger('change');
       }
     });
-  });
+
+    var images = document.querySelectorAll('img');
+        images.forEach(function(image) {
+          image.setAttribute('loading', 'lazy');
+        });
+    });
 
   document.addEventListener("DOMContentLoaded", function() {
     var endlessScroll = new Ajaxinate({
