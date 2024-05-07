@@ -1,0 +1,69 @@
+<div class="dev-section" data-section_name="dev-section">
+    <h2>This is dev new section for testing with github</h2>
+</div>
+{% schema %}
+  {
+    "name": "Dev section name",
+    "settings": [
+       {
+         "type": "textarea",
+         "id": "filter_price",
+         "label": "Add filter price",
+         "info": "Please add price using pipe sign (|)."
+       },
+       {
+         "type": "text",
+         "id": "filter_max_price",
+         "label": "Add filter max price"         
+       }      
+    ],
+    "blocks": [
+     {
+       "name": "Image With Text",
+       "type": "image_with_text",
+       "settings": [
+         {
+            "type": "header",
+            "content": "Grid Image"
+          },
+         {
+           "type": "image_picker",
+           "id": "grid_image",
+           "label": "Image Desktop"
+         },
+         {
+           "type": "image_picker",
+           "id": "grid_image_mobile",
+           "label": "Image Mobile"
+         },
+         {
+           "type": "text",
+           "id": "image_heading",
+           "label": "Image Heading"
+         },
+         {
+           "type": "richtext",
+           "id": "image_description",
+           "label": "Image Description"
+         },
+         {
+           "type": "text",
+           "id": "image_button_text",
+           "label": "Button Text"
+         },
+         {
+           "type": "url",
+           "id": "image_button_url",
+           "label": "Button URL"
+         },
+         {
+           "type": "number",
+           "id": "grid_position",
+           "label": "Add Grid position number"
+         }
+       ]
+     }
+  ],
+  "presets":[{"name": "Dev section name"}]
+  }
+{% endschema %}
